@@ -73,10 +73,14 @@ WSGI_APPLICATION = 'PaReport.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES = { #Base de datos MySql local
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'testing',
+        'USER': 'root',
+        'PASSWORD': 'abcd.1234',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
