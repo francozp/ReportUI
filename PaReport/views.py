@@ -10,3 +10,6 @@ from .models import *
 
 class IndexView(TemplateView):
     template_name = "index.html" 
+
+class CuentasView(TemplateView):
+    template_name = "verCuentas.html"

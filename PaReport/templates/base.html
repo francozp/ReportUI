@@ -21,59 +21,9 @@
       <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand-logo" href="{% url "index" %}"><img src="{% static "images/scotia.svg" %}"  style="width: 260px;"  alt="Scotia" ></a>
+              <a class="navbar-brand-logo" href="{% url "index" %}"><img src="{% static "images/scotia.svg" %}"  style="width: 210px;"  alt="Scotia" ></a>
             </div>
           </div>
-          <div class="navbar-menu-wrapper d-flex align-items-center">
-              <p class="page-name d-none d-lg-block">Hola, {{ user.perfil.nombre }}</p>
-              <ul class="navbar-nav ml-lg-auto">
-      
-                <li class="nav-item dropdown notification-dropdown">
-                  <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-toggle="dropdown">
-                    <i class="icon-speech icons"></i>
-                    <span class="count"></span>
-                  </a>
-                  <div class="dropdown-menu navbar-dropdown preview-list notification-drop-down dropdownAnimation" aria-labelledby="notificationDropdown">
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon">
-                          <i class="icon-info mx-0"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject font-weight-medium">Application Error</p>
-                        <p class="font-weight-light small-text">
-                          Just now
-                        </p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon">
-                          <i class="icon-speech mx-0"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject">Settings</p>
-                        <p class="font-weight-light small-text">
-                          Private message
-                        </p>
-                      </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                      <div class="preview-thumbnail">
-                        <div class="preview-icon">
-                          <i class="icon-envelope mx-0"></i>
-                        </div>
-                      </div>
-                      <div class="preview-item-content">
-                        <p class="preview-subject">New user registration</p>
-                        <p class="font-weight-light small-text">
-                          2 days ago
-                        </p>
-                      </div>
-                    </a>
-      </div>
           <!--/.container-fluid -->
         </nav>
       </div>
@@ -87,7 +37,7 @@
               <span class="nav-link">GENERAL</span>
             </li>
           </ul>
-        </nav>  z
+        </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <div class="row row-offcanvas row-offcanvas-right">
@@ -97,22 +47,47 @@
                   <li class="nav-item nav-category">
                     <span class="nav-link">GENERAL</span>
                   </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="{% url "index" %}">
-                      <span class="menu-title">Inicio</span>
-                      <i class="icon-wrench menu-icon"></i>
-                    </a>
-                  </li>
-      
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url "index" %}">
-                      <span class="menu-title">Consultas</span>
-                      <i class="icon-grid menu-icon"></i>
-                    </a>
-                  </li>
                 </ul>
-              </nav>
-            </div></div>
+              </nav>  
+              <!-- partial -->
+              <div class="container-fluid page-body-wrapper">
+                  <div class="row row-offcanvas row-offcanvas-right">
+                    <!-- partial:partials/_sidebar.html -->
+                    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                      <ul class="nav">
+                        <li class="nav-item nav-category">
+                          <span class="nav-link">GENERAL</span>
+                        </li>
+                          <li class="nav-item">
+                          <a class="nav-link" href="{% url "index" %}">
+                            <span class="menu-title">Inicio</span>
+                            <i class="icon-home  menu-icon"></i>
+                          </a>
+                        </li>
+            
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url "index" %}">
+                            <span class="menu-title">Consultas</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+      </div></div>
+        <div class="content-wrapper">
+            <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">{% block title %}{% endblock %}</h1>
+                  {% block content %}
+                  {% endblock %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
           <!-- ROW ENDS -->
           <footer class="footer">
           <div class="container-fluid clearfix">

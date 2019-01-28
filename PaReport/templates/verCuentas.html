@@ -1,0 +1,96 @@
+{%  extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Targets - Account List{% endblock %}
+{% block jsincludes %}
+    <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
+    <script src="{% static "js/jquery.dynatable.js" %}"></script>
+    <script> $(function() {$('#tabla-stock').dynatable();} );</script>
+{% endblock %}
+
+{% block content %}
+<table id="tabla-stock">
+        <thead>
+            <th>Account Name</th>
+            <th>Application Name</th>
+            <th>Application Type</th>
+            <th>Host Name</th>
+            <th>Account Type</th>
+            <th>Verified</th>
+        </thead>
+        <tbody>
+            <tr>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+            </tr>
+            <tr>
+                    <td>Testing</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+            </tr>
+            <tr>2
+                    <td>Testing2</td>
+                    <td>Testing2</td>
+                    <td>Testing2</td>
+                    <td>Testing2</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+            </tr>
+            <tr>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing3</td>
+                    <td>Testing3</td>
+                    <td>Testing3</td>
+                    <td>Testing3</td>
+            </tr>
+            <tr>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing1</td>
+                    <td>Testing</td>
+            </tr>
+            <tr>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+            </tr>
+            <tr>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+            </tr>
+            <tr>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+            </tr>
+            <tr>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+                    <td>Testing</td>
+            </tr>
+
+        </tbody>
+</table>
+{% endblock %}

@@ -17,5 +17,6 @@ from django.urls import path, include, re_path
 from .views import *
 
 urlpatterns = [
-    path('index', IndexView.as_view(), name = 'index')
+    path('index', IndexView.as_view(), name = 'index'),
+    path('cuentas', CuentasView.as_view(), name = 'cuentas')
 ]
