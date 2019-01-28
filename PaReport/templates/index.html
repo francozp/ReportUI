@@ -1,53 +1,6 @@
 {%  extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Disponibilidad de Stock para pedido #{{ object.id }}{% endblock %}
+{% block title %}TESTING{% endblock %}
 {% block content %}
-<table class="table table-striped">
-    <thead>
-    <th>Producto</th>
-    <th>Solicitado</th>
-    <th>En Stock</th>
-    <th>Disponibilidad</th>
-    </thead>
-    <tbody>
-    {% for _, nombre, soli, enstock, cant, falta in stock %}
-        <tr>
-        <td>{{nombre}}</td>
-        <td>{{soli}}</td>
-        <td>{{enstock}}</td>
-        {% if falta %}
-            <td><i class="mdi mdi-close-outline" style="color: red"></i> Faltan {{cant}} unidades</td>
-        {% else %}
-            <td><i class="mdi mdi-check-outline" style="color: green "></i> {{soli}} unidades disponibles</td>
-        {% endif %}
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-<br><br>
-<div class="card">
-<h2>Realizar solicitud de compra</h2>
-<p>Esto enviará una solicitud para realizar una cotización de los productos requeridos que no están en stock.</p>
-<form method="post" action="{% url 'cruzarstock' object.id %}">
-{% csrf_token %}
-<table class="table table-striped">
-    <thead>
-    <th>Producto</th>
-    <th>Cantidad a solicitar</th>
-    </thead>
-    <tbody>
-    {% for id, nombre, _, _, cant, falta in stock %}
-        {% if falta %}
-        <tr>
-            <td>{{nombre}} <input type="hidden" name="prodid-{{ forloop.counter }}" value="{{ id }}"></td>
-            <td>{{cant}} <input type="hidden" name="prodcant-{{ forloop.counter }}" value="{{ cant }}"></td>
-        </tr>
-        {% endif %}
-    {% endfor %}
-    </tbody>
-</table>
-<br>
-<input type="submit" class="btn btn-block btn-primary btn-lg" value="Enviar solicitud de compra">
-</form>
-</div>
+"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
 {% endblock %}

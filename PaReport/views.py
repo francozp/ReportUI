@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, DetailView, ListView, FormView,CreateView
 import datetime
+from .models import *
 
 class IndexView(TemplateView):
     template_name = "index.html" 

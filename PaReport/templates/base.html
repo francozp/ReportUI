@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>GPI Admin</title>
+  <title>PA Report</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
@@ -14,76 +14,69 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{%  static "css/style.css" %}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{% static "images/favicon.png" %}" />
+  <link rel="shortcut icon" href="{% static "images/icono.png" %}" />
 </head>
 <body>
   <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="{% url "index" %}"><img src="{% static "images/logo.svg" %}" alt="logo"></a>
-        <a class="navbar-brand brand-logo-mini" href="{% url "index" %}"><img src="{% static "images/logo_mini.svg" %}" alt="logo"></a>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center">
-        <p class="page-name d-none d-lg-block">Hola, {{ user.perfil.nombre }}</p>
-        <ul class="navbar-nav ml-lg-auto">
-
-          <li class="nav-item dropdown notification-dropdown">
-            <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-toggle="dropdown">
-              <i class="icon-speech icons"></i>
-              <span class="count"></span>
-            </a>
-            <div class="dropdown-menu navbar-dropdown preview-list notification-drop-down dropdownAnimation" aria-labelledby="notificationDropdown">
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-info mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject font-weight-medium">Application Error</p>
-                  <p class="font-weight-light small-text">
-                    Just now
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-speech mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject">Settings</p>
-                  <p class="font-weight-light small-text">
-                    Private message
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item preview-item">
-                <div class="preview-thumbnail">
-                  <div class="preview-icon">
-                    <i class="icon-envelope mx-0"></i>
-                  </div>
-                </div>
-                <div class="preview-item-content">
-                  <p class="preview-subject">New user registration</p>
-                  <p class="font-weight-light small-text">
-                    2 days ago
-                  </p>
-                </div>
-              </a>
+      <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand-logo" href="{% url "index" %}"><img src="{% static "images/scotia.svg" %}"  style="width: 260px;"  alt="Scotia" ></a>
             </div>
-          </li>
-          <li class="nav-pills d-flex align-items-center">
-            <a class="nav-link" href="{% url 'logout' %}">Salir <i class="mdi mdi-exit-to-app"></i></a>
-          </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center ml-auto" type="button" data-toggle="offcanvas">
-          <span class="icon-menu icons"></span>
-        </button>
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-center">
+              <p class="page-name d-none d-lg-block">Hola, {{ user.perfil.nombre }}</p>
+              <ul class="navbar-nav ml-lg-auto">
+      
+                <li class="nav-item dropdown notification-dropdown">
+                  <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-toggle="dropdown">
+                    <i class="icon-speech icons"></i>
+                    <span class="count"></span>
+                  </a>
+                  <div class="dropdown-menu navbar-dropdown preview-list notification-drop-down dropdownAnimation" aria-labelledby="notificationDropdown">
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon">
+                          <i class="icon-info mx-0"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject font-weight-medium">Application Error</p>
+                        <p class="font-weight-light small-text">
+                          Just now
+                        </p>
+                      </div>
+                    </a>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon">
+                          <i class="icon-speech mx-0"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject">Settings</p>
+                        <p class="font-weight-light small-text">
+                          Private message
+                        </p>
+                      </div>
+                    </a>
+                    <a class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon">
+                          <i class="icon-envelope mx-0"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject">New user registration</p>
+                        <p class="font-weight-light small-text">
+                          2 days ago
+                        </p>
+                      </div>
+                    </a>
       </div>
-    </nav>
+          <!--/.container-fluid -->
+        </nav>
+      </div>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <div class="row row-offcanvas row-offcanvas-right">
@@ -93,70 +86,37 @@
             <li class="nav-item nav-category">
               <span class="nav-link">GENERAL</span>
             </li>
-          {% if user.perfil.cargo != 'EC' and user.perfil.cargo != 'BG' and user.perfil.cargo != 'PO'%}
-              <li class="nav-item">
-              <a class="nav-link" href="{% url "Registro" %}">
-                <span class="menu-title">Crear Usuario</span>
-                <i class="icon-wrench menu-icon"></i>
-              </a>
-            </li>
-                        {% endif %}
-
-              {% if user.perfil.cargo != 'EC' and user.perfil.cargo != 'BG'%}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url "Solicitud" %}">
-                <span class="menu-title">Crear Solicitud</span>
-                <i class="icon-grid menu-icon"></i>
-              </a>
-            </li>
-              {% endif %}
-              {% if user.perfil.cargo != 'EC'%}
-             <li class="nav-item">
-              <a class="nav-link" href="{% url "verPedidos" %}">
-                <span class="menu-title">Ver Solicitudes</span>
-                <i class="icon-layers menu-icon"></i>
-              </a>
-            </li>
-          {% endif %}
-            {% if user.perfil.cargo != 'EC' and user.perfil.cargo != 'PO'%}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url "verStock" %}">
-                <span class="menu-title">Stock Productos</span>
-                <i class="icon-wrench menu-icon"></i>
-              </a>
-            </li>
-          {% endif %}
-              {% if user.perfil.cargo != 'PO' and user.perfil.cargo != 'BG'%}
-
-              <li class="nav-item">
-              <a class="nav-link" href="{% url "verCotizacion" %}">
-                <span class="menu-title">Ver Cotizaciones</span>
-                <i class="icon-wrench menu-icon"></i>
-              </a>
-            </li>
-                    {% endif %}
-
           </ul>
         </nav>  z
         <!-- partial -->
-        <div class="content-wrapper">
-            <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <h1 class="card-title">{% block title %}{% endblock %}</h1>
-                  {% block content %}
-                  {% endblock %}
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <div class="container-fluid page-body-wrapper">
+            <div class="row row-offcanvas row-offcanvas-right">
+              <!-- partial:partials/_sidebar.html -->
+              <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                  <li class="nav-item nav-category">
+                    <span class="nav-link">GENERAL</span>
+                  </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url "index" %}">
+                      <span class="menu-title">Inicio</span>
+                      <i class="icon-wrench menu-icon"></i>
+                    </a>
+                  </li>
+      
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url "index" %}">
+                      <span class="menu-title">Consultas</span>
+                      <i class="icon-grid menu-icon"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div></div>
           <!-- ROW ENDS -->
           <footer class="footer">
           <div class="container-fluid clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">Zafitas</a>. All rights reserved.  <i class="mdi mdi-heart text-danger"></i></span>
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018 <a href="#" target="_blank">Franco Zalavari</a>. All rights reserved.  <i class="mdi mdi-heart text-danger"></i></span>
           </div>
         </footer>
       </div>

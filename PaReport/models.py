@@ -1,4 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+import datetime
+
 class A2AMappings(models.Model):
     id = models.IntegerField(primary_key=True)
     target_alias = models.CharField(db_column='Target_Alias', max_length=200)  # Field name made lowercase.
