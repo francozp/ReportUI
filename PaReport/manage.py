@@ -1,3 +1,4 @@
+#correr XAMPP sudo /opt/lampp/manager-linux-x64.run
 #!/usr/bin/env python
 import os
 import sys

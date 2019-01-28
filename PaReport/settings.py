@@ -76,11 +76,11 @@ WSGI_APPLICATION = 'PaReport.wsgi.application'
 DATABASES = { #Base de datos MySql local
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testing',
+        'NAME': 'pa_testing',
         'USER': 'root',
-        'PASSWORD': 'abcd.1234',
+        'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '3336',
     }
 }
 
