@@ -11,5 +11,11 @@ from .models import *
 class IndexView(TemplateView):
     template_name = "index.html" 
 
-class CuentasView(TemplateView):
+class CuentasView(ListView):
+    model = Accounts
     template_name = "verCuentas.html"
+    context_object_name = 'accounts'
+    def render_to_response(self, context):
+        return super(CuentasView, self).render_to_response(context)
+
+        
