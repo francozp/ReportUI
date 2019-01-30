@@ -1,6 +1,6 @@
 {%  extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Accounts{% endblock %}
+{% block title %}Users{% endblock %}
 {% block jsincludes %}
     <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
     <script src="{% static "js/jquery.dynatable.js" %}"></script>
@@ -10,27 +10,27 @@
 {% block content %}
 <table id="tabla-stock">
         <thead>
-            <th>Account Name</th>
-            <th>Application Name</th>
-            <th>Application Type</th>
-            <th>Host Name</th>
-            <th>Account Type</th>
-            <th>Verified</th>
-            <th>Last Update</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Authentication</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Last Login</th>
         </thead>
         <tbody>
                 {% if object_list %}
                 {% for registro in object_list %}
                   <tr>
-                      <td>{{registro.account_name}}</td>
-                      <td>{{registro.application_name}}</td>
-                      <td>{{registro.application_type}}</td>
-                      <td>{{registro.host_name}}</td>
-                      <td>{{registro.account_type}}</td>
-                      <td>{{registro.verified}}</td>
-                      <td>{{registro.update_date}}</td>
+                      <td>{{registro.user}}</td>
+                      <td>{{registro.status}}</td>
+                      <td>{{registro.authentication}}</td>
+                      <td>{{registro.first_name}}</td>
+                      <td>{{registro.last_name}}</td>
+                      <td>{{registro.last_login}}</td>
                   </tr>
+          
                 {% endfor %}
+          
               {% else %}
                 <p>No hay nada.</p>
           {% endif %}

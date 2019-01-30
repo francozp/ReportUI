@@ -18,5 +18,7 @@ from .views import *
 
 urlpatterns = [
     path('index', IndexView.as_view(), name = 'index'),
-    path('cuentas', CuentasView.as_view(), name = 'cuentas')
+    path('cuentas', CuentasView.as_view(), name = 'cuentas'),
+    path('usuarios', UsuariosView.as_view(), name = 'usuarios'),
+    path('aplicaciones', AplicacionesView.as_view(), name = 'aplicaciones')
 ]

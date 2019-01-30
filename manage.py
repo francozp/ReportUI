@@ -1,5 +1,5 @@
 #correr XAMPP sudo /opt/lampp/manager-linux-x64.run
-#sudo ln -s /opt/lampp/var/mysql/mysql.sock /var/run/mysqld/mysqld.sock
+#sudo ln -s /opt/lampp/var/mysql/mysql.sock /var/run/mysqld/mysqld.sock --- sudo mkdir -p /var/run/mysqld
 #!/usr/bin/env python
 import os
 import sys

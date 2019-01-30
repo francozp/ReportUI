@@ -21,6 +21,7 @@ class Accounts(models.Model):
     host_name = models.CharField(db_column='Host_Name', max_length=100)  # Field name made lowercase.
     account_type = models.IntegerField(db_column='Account_Type')  # Field name made lowercase.
     verified = models.CharField(db_column='Verified', max_length=29)  # Field name made lowercase.
+    update_date = models.DateTimeField(db_column='update_date')
 
     class Meta:
         managed = False

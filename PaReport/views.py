@@ -17,5 +17,17 @@ class CuentasView(ListView):
     context_object_name = 'accounts'
     def render_to_response(self, context):
         return super(CuentasView, self).render_to_response(context)
-
         
+class UsuariosView(ListView):
+    model = Users
+    template_name = "verUsuarios.html"
+    context_object_name = 'users'
+    def render_to_response(self, context):
+        return super(UsuariosView, self).render_to_response(context)
+
+class AplicacionesView(ListView):
+    model = Applications
+    template_name = "verAplicaciones.html"
+    context_object_name = "applications"
+    def render_to_response(self, context):
+        return super(AplicacionesView, self).render_to_response(context)

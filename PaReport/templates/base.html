@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>PA Report</title>
+  <title>PARS</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
@@ -17,15 +17,21 @@
   <link rel="shortcut icon" href="{% static "images/icono.png" %}" />
 </head>
 <body>
+  
   <div class="container-scroller">
+    
       <nav class="navbar navbar-default">
+        
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand-logo" href="{% url "index" %}"><img src="{% static "images/scotia.svg" %}"  style="width: 210px;"  alt="Scotia" ></a>
+              <a class="navbar-brand-logo" href="{% url "index" %}"><img src="{% static "images/scotia.svg" %}"  style="width: 190px;"  alt="Scotia" ></a>
             </div>
           </div>
+          <b><font size="2px">Password Authority Report System</font></b>
+          
           <!--/.container-fluid -->
         </nav>
+        
       </div>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
@@ -84,7 +90,7 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="{% url "cuentas" %}">
+                          <a class="nav-link" href="{% url "aplicaciones" %}">
                             <span class="menu-title">Applications</span>
                             <i class="icon-magnifier menu-icon"></i>
                           </a>
@@ -102,7 +108,7 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="{% url "cuentas" %}">
+                          <a class="nav-link" href="{% url "usuarios" %}">
                             <span class="menu-title">Users</span>
                             <i class="icon-magnifier menu-icon"></i>
                           </a>
