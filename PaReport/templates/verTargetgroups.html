@@ -1,6 +1,6 @@
 {%  extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Accounts{% endblock %}
+{% block title %}Target Groups{% endblock %}
 {% block jsincludes %}
     <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
     <script src="{% static "js/jquery.dynatable.js" %}"></script>
@@ -10,25 +10,17 @@
 {% block content %}
 <table id="tabla-stock">
         <thead>
-            <th>Account Name</th>
-            <th>Application Name</th>
-            <th>Application Type</th>
-            <th>Host Name</th>
-            <th>Account Type</th>
-            <th>Verified</th>
-            <th>Update date</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
         </thead>
         <tbody>
                 {% if object_list %}
                 {% for registro in object_list %}
                   <tr>
-                      <td>{{registro.account_name}}</td>
-                      <td>{{registro.application_name}}</td>
-                      <td>{{registro.application_type}}</td>
-                      <td>{{registro.host_name}}</td>
-                      <td>{{registro.account_type}}</td>
-                      <td>{{registro.verified}}</td>
-                      <td>{{registro.update_date}}</td>
+                      <td>{{registro.name}}</td>
+                      <td>{{registro.type}}</td>
+                      <td>{{registro.description}}</td>
                   </tr>
                 {% endfor %}
               {% else %}

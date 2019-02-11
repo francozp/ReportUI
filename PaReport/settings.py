@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'PaReport.apps.PaReportConfig'
+    'PaReport.apps.PaReportConfig',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -77,11 +78,14 @@ WSGI_APPLICATION = 'PaReport.wsgi.application'
 DATABASES = { #Base de datos MySql local
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pa_testing',
+        'NAME': 'testing',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'abcd.1234',
         'HOST': 'localhost',
-        'PORT': '3336',
+        'PORT': '3306',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
     }
 }
 

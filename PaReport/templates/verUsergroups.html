@@ -1,6 +1,6 @@
 {%  extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Applications{% endblock %}
+{% block title %}User Groups{% endblock %}
 {% block jsincludes %}
     <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
     <script src="{% static "js/jquery.dynatable.js" %}"></script>
@@ -10,21 +10,17 @@
 {% block content %}
 <table id="tabla-stock">
         <thead>
-            <th>Application Name</th>
-            <th>Application Type</th>
-            <th>Host Name</th>
+            <th>Name</th>
+            <th>Description</th>
         </thead>
         <tbody>
                 {% if object_list %}
                 {% for registro in object_list %}
-                  <tr>
-                      <td>{{registro.application_name}}</td>
-                      <td>{{registro.application_type}}</td>
-                      <td>{{registro.host_name.host_name}}</td>
+                  <tr> 
+                      <td>{{registro.name}}</td>
+                      <td>{{registro.description}}</td>
                   </tr>
-          
                 {% endfor %}
-          
               {% else %}
                 <p>No hay nada.</p>
           {% endif %}
