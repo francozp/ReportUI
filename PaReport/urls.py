@@ -18,13 +18,12 @@ from .views import *
 
 urlpatterns = [
     path('index', IndexView.as_view(), name = 'index'),
-    path('cuentas', CuentasView.as_view(), name = 'cuentas'),
+    path('cuentas', CuentasView.as_view(success_url='/cuentas'), name = 'cuentas'),
     path('usuarios', UsuariosView.as_view(), name = 'usuarios'),
     path('aplicaciones', AplicacionesView.as_view(), name = 'aplicaciones'),
     path('servidores', ServidoresView.as_view(), name = 'servidores'),
     path('aliases', AliasesView.as_view(), name = 'aliases'),
     path('mappings', MappingsView.as_view(), name = 'mappings'),
     path('targetgroups', TgView.as_view(), name = 'targetgroups'),
-    path('usergroups', UgView.as_view(), name = 'usergroups'),
-    path('consultas/', QueryView.as_view(success_url='/cuentas'), name = 'consultas')
+    path('usergroups', UgView.as_view(), name = 'usergroups')
 ]

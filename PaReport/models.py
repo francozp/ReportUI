@@ -13,7 +13,7 @@ class A2AMappings(models.Model):
     target_alias = models.ForeignKey('Aliases', models.DO_NOTHING, db_column='Target_Alias')  # Field name made lowercase.
     request_server = models.CharField(db_column='Request_Server', max_length=200)  # Field name made lowercase.
     report_id = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'a2a_mappings'
@@ -23,13 +23,13 @@ class A2AMappings(models.Model):
 class Accounts(models.Model):
     id = models.IntegerField()
     account_name = models.CharField(primary_key=True, max_length=200)
-    application_name = models.ForeignKey('Applications', models.DO_NOTHING, db_column='application_name')
+    application_name = models.CharField(max_length=200, db_column='application_name')
     application_type = models.CharField(max_length=200)
     host_name = models.CharField(max_length=200)
     account_type = models.CharField(max_length=200)
     verified = models.CharField(max_length=200)
     report = models.ForeignKey('Report', models.DO_NOTHING)
-    cuentas = models.Manager()
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'accounts'
@@ -44,7 +44,7 @@ class AccountsDates(models.Model):
     verification_date = models.DateTimeField()
     last_used = models.DateTimeField()
     report_id = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'accounts_dates'
@@ -56,7 +56,7 @@ class Aliases(models.Model):
     application_name = models.CharField(db_column='Application_Name', max_length=200)  # Field name made lowercase.
     account_name = models.CharField(db_column='Account_Name', max_length=200)  # Field name made lowercase.
     report_id = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'aliases'
@@ -66,9 +66,9 @@ class Aliases(models.Model):
 class Applications(models.Model):
     application_name = models.CharField(db_column='Application_Name', primary_key=True, max_length=200)  # Field name made lowercase.
     application_type = models.CharField(db_column='Application_Type', max_length=200)  # Field name made lowercase.
-    host_name = models.ForeignKey('Servers', models.DO_NOTHING, db_column='Host_Name')  # Field name made lowercase.
+    host_name = models.CharField(db_column='Host_Name', max_length=200)  # Field name made lowercase.
     report = models.ForeignKey('Report', models.DO_NOTHING)
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'applications'
@@ -81,7 +81,7 @@ class Report(models.Model):
     date = models.DateTimeField()
     completed = models.IntegerField()
     closed = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'report'
@@ -91,7 +91,7 @@ class Servers(models.Model):
     host_name = models.CharField(db_column='Host_Name', primary_key=True, max_length=100)  # Field name made lowercase.
     ip_address = models.CharField(db_column='IP_Address', max_length=100)  # Field name made lowercase.
     report = models.ForeignKey(Report, models.DO_NOTHING)
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'servers'
@@ -103,7 +103,7 @@ class TargetGroups(models.Model):
     type = models.CharField(db_column='Type', max_length=200)  # Field name made lowercase.
     description = models.CharField(db_column='Description', max_length=300)  # Field name made lowercase.
     report_id = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'target_groups'
@@ -116,7 +116,7 @@ class TgAccounts(models.Model):
     app_name = models.ForeignKey(Accounts, models.DO_NOTHING, db_column='app_name', related_name='+' )
     host_name = models.CharField(max_length=200)
     report_id = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'tg_accounts'
@@ -127,7 +127,7 @@ class TgApplications(models.Model):
     host_name = models.ForeignKey(Applications, models.DO_NOTHING, db_column='host_name', related_name='+' )
     tg = models.ForeignKey(TargetGroups, models.DO_NOTHING)
     report_id = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'tg_applications'
@@ -137,7 +137,7 @@ class TgServers(models.Model):
     tg = models.ForeignKey(TargetGroups, models.DO_NOTHING)
     host_name = models.ForeignKey(Servers, models.DO_NOTHING, db_column='host_name')
     report_id = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'tg_servers'
@@ -146,7 +146,7 @@ class TgServers(models.Model):
 class UserInGroup(models.Model):
     user = models.ForeignKey('Users', models.DO_NOTHING, db_column='user')
     group_name = models.ForeignKey('UsersGroups', models.DO_NOTHING, db_column='group_name')
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'user_in_group'
@@ -155,7 +155,7 @@ class UserInGroup(models.Model):
 class UserInTg(models.Model):
     id_tg = models.ForeignKey(TargetGroups, models.DO_NOTHING, db_column='id_tg')
     user = models.ForeignKey('Users', models.DO_NOTHING, db_column='user')
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'user_in_tg'
@@ -168,7 +168,8 @@ class Users(models.Model):
     first_name = models.CharField(db_column='First_Name', max_length=200)  # Field name made lowercase.
     last_name = models.CharField(db_column='Last_Name', max_length=200)  # Field name made lowercase.
     last_login = models.DateTimeField(db_column='Last_Login')  # Field name made lowercase.
-    report_id = models.IntegerField()
+    report_id = models.IntegerField(db_column='report_id')
+    admin = models.Manager()
 
     class Meta:
         managed = False
@@ -180,7 +181,7 @@ class UsersGroups(models.Model):
     name = models.CharField(db_column='Name', primary_key=True, max_length=200)  # Field name made lowercase.
     description = models.CharField(db_column='Description', max_length=300)  # Field name made lowercase.
     report_id = models.IntegerField()
-
+    admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'users_groups'

@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
     <script src="{% static "js/jquery.dynatable.js" %}"></script>
     <script> $(function() {$('#tabla-stock').dynatable();} );</script>
+    <link rel="stylesheet" href="{% static "css/tableexport.css" %}">
+    <script src="{% static "js/export.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -14,16 +16,67 @@
             <th>Description</th>
         </thead>
         <tbody>
-                {% if object_list %}
-                {% for registro in object_list %}
+                {% for registro in data %}
                   <tr> 
                       <td>{{registro.name}}</td>
                       <td>{{registro.description}}</td>
                   </tr>
                 {% endfor %}
-              {% else %}
-                <p>No hay nada.</p>
-          {% endif %}
         </tbody>
 </table>
+{% if filtered%}
+<form method="post">{% csrf_token %}<p><button type="submit" class="btn btn-light csv"> Exportar a CSV<input type="hidden" name="form" value="{{consulta}}" class="textfield"></button> <em>&nbsp;&nbsp;&nbsp;Exportar los datos de la tabla a un archivo CSV</em>
+</p></form>
+{%else%}
+<form method="post">{% csrf_token %}<p><button type="submit" class="btn btn-light csv"> Exportar a CSV<input type="hidden" name="form" value="exportar"></button> <em>&nbsp;&nbsp;&nbsp;Exportar los datos de la tabla a un archivo CSV</em>
+</p></form>
+{%endif%}
+<br><hr style="width: 100%; color: red; height: 1px; background-color:red;" />
+
+<h1 class="text-danger">Búsqueda por valor&ensp;&ensp;<i class="icon-magnifier menu-icon"></i></h1>
+<form method="post">
+        {% csrf_token %}
+    <div class="responsivetable jsresponsive" style="max-width: 1297px;">
+        <table class="data">
+    <thead>
+        <tr>
+            <th>Columna</th>
+            <th>Operador</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+    <tr class="noclick">
+        <th>Name</th>
+    <td>
+        <select id="ColumnOperator0" name="criterio">
+            <option value="LIKE">LIKE</option><option value="LIKE %...%">LIKE %...%</option><option value="NOT LIKE">NOT LIKE</option><option value="=">=</option><option value="!=">!=</option><option value="REGEXP">REGEXP</option><option value="REGEXP ^...$">REGEXP ^...$</option><option value="NOT REGEXP">NOT REGEXP</option><option value="= ''">= ''</option><option value="!= ''">!= ''</option><option value="IN (...)">IN (...)</option><option value="NOT IN (...)">NOT IN (...)</option><option value="BETWEEN">BETWEEN</option><option value="NOT BETWEEN">NOT BETWEEN</option><option value="IS NULL">IS NULL</option><option value="IS NOT NULL">IS NOT NULL</option>
+        </select>
+    </td>
+    <td data-type="int(11)">
+        <input type="text" name="detalle" size="30" class="textfield" id="fieldID_0">
+    </td>
+    </tr>
+    <tr class="noclick">
+        <th>Description</th>
+    <td>
+        <select id="ColumnOperator0" name="criterio">
+            <option value="LIKE">LIKE</option><option value="LIKE %...%">LIKE %...%</option><option value="NOT LIKE">NOT LIKE</option><option value="=">=</option><option value="!=">!=</option><option value="REGEXP">REGEXP</option><option value="REGEXP ^...$">REGEXP ^...$</option><option value="NOT REGEXP">NOT REGEXP</option><option value="= ''">= ''</option><option value="!= ''">!= ''</option><option value="IN (...)">IN (...)</option><option value="NOT IN (...)">NOT IN (...)</option><option value="BETWEEN">BETWEEN</option><option value="NOT BETWEEN">NOT BETWEEN</option><option value="IS NULL">IS NULL</option><option value="IS NOT NULL">IS NOT NULL</option>
+        </select>
+    </td>
+    <td data-type="int(11)">
+        <input type="text" name="detalle" size="30" class="textfield" id="fieldID_0">
+    </td>
+    </tr>
+
+
+    </tbody></div>
+</table>
+</div></fieldset></fieldset></fieldset></fieldset>
+
+<div class="clearfloat"></div>
+</div></div></fieldset>
+<button type="submit" class="btn btn-block btn-danger btn-lg">Consulta<input type="hidden" name="form" value="filtrar"></button>
+</form>
 {% endblock %}

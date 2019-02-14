@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-{%if sql%}
+
 <table id="tabla-stock">
     <thead>
         <th>Account Name</th>
@@ -21,6 +21,7 @@
         <th>Update date</th>
     </thead>
     <tbody>
+            {%if sql%}
             {% for cuenta in sql %}
               <tr>
                   <td>{{cuenta.account_name}}</td>
@@ -32,10 +33,23 @@
                   <td>{{cuenta.update_date}}</td>
               </tr>
             {% endfor %}
+            {% else %}
+            {% for registro in complete %}
+                  <tr>
+                      <td>{{registro.account_name}}</td>
+                      <td>{{registro.application_name.application_name}}</td>
+                      <td>{{registro.application_type}}</td>
+                      <td>{{registro.host_name}}</td>
+                      <td>{{registro.account_type}}</td>
+                      <td>{{registro.verified}}</td>
+                      <td>{{registro.update_date}}</td>
+                  </tr>
+                {% endfor %}
+            {% endif %}
     </tbody>
 </table>
 <br><hr style="width: 100%; color: red; height: 1px; background-color:red;" />
-{% endif %}
+
 <h1 class="text-danger">Búsqueda por valor&ensp;&ensp;<i class="icon-magnifier menu-icon"></i></h1>
 <form method="post">
         {% csrf_token %}
@@ -117,7 +131,7 @@
     </td>
     </tr>
 
-    </tbody>
+    </tbody></div>
 </table>
 </div></fieldset></fieldset></fieldset></fieldset>
 

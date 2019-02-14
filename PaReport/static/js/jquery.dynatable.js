@@ -48,7 +48,7 @@
       paginate: true,
       sort: true,
       pushState: true,
-      search: true,
+      search: false,
       recordCount: true,
       perPageSelect: true
     },
@@ -84,7 +84,7 @@
       perPagePlacement: 'before',
       perPageText: 'Mostrar: ',
       recordCountText: 'Mostrando ',
-      processingText: 'Processing...'
+      processingText: ''
     },
     dataset: {
       ajax: false,
