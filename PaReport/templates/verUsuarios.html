@@ -13,21 +13,17 @@
 <table id="tabla-stock">
         <thead>
             <th>User</th>
-            <th>Status</th>
             <th>Authentication</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Last Login</th>
         </thead>
         <tbody>
             {% for registro in data %}
                   <tr>
                       <td>{{registro.user}}</td>
-                      <td>{{registro.status}}</td>
                       <td>{{registro.authentication}}</td>
                       <td>{{registro.first_name}}</td>
                       <td>{{registro.last_name}}</td>
-                      <td>{{registro.last_login}}</td>
                   </tr>
           
                 {% endfor %}
@@ -40,6 +36,7 @@
 <form method="post">{% csrf_token %}<p><button type="submit" class="btn btn-light csv"> Exportar a CSV<input type="hidden" name="form" value="exportar"></button> <em>&nbsp;&nbsp;&nbsp;Exportar los datos de la tabla a un archivo CSV</em>
 </p></form>
 {%endif%}
+
 <br><hr style="width: 100%; color: red; height: 1px; background-color:red;" />
 
 <h1 class="text-danger">Búsqueda por valor&ensp;&ensp;<i class="icon-magnifier menu-icon"></i></h1>

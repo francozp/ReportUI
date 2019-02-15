@@ -10,7 +10,6 @@ from .models import *
 from .forms import *
 import csv
 
-data = None
 def build_query(table, columns, data, model):
     execute = False
     query = "SELECT * FROM " + table + " WHERE "
@@ -43,7 +42,7 @@ def export_csv_file(request, queryset, columns,table_name):
     writer.writerow(columns)
     for row in queryset:
         if(table_name == "Accounts"):
-            writer.writerow([row.account_name,row.application_name, row.application_type, row.host_name, row.account_type, row.verified])
+            writer.writerow([row.account_name,row.application_name, row.application_type, row.host_name, row.account_type])
         elif(table_name == "A2AMappings"):
             writer.writerow([row.target_alias.alias_name, row.request_server])
         elif(table_name == "Applications"):
@@ -84,11 +83,18 @@ class CuentasView(FormView):
             context = self.get_context_data()
             data = self.request.POST
             data = dict(data) # De querydict a diccionario python
-            columns = ["account_name", "application_name", "application_type", "host_name", "account_type", "verified"]
+            columns = ["account_name", "application_name", "application_type", "host_name", "account_type"]
             if(data["form"][0] != "filtrar"):
                 if(data["form"][0] != "exportar"):
-                    context['data'] = Accounts.admin.raw(data["form"][0])
-                return export_csv_file(request, context['data'],columns,"Accounts")
+                    if(data["form"][0] == "Privates"):
+                        query = "select distinct * from accounts where account_name not like 'fcssa%%' and account_name not like 'FIREC%%' order by host_name"
+                        context["data"],context["consulta"] = Accounts.admin.raw(query), str(query)
+                        print(query)
+                        print(context["data"])
+                        context["filtered"] = True
+                    else:
+                        context['data'] = Accounts.admin.raw(data["form"][0])
+                        return export_csv_file(request, context['data'],columns,"Accounts")
             else:
                 context["data"],context["consulta"] = build_query("accounts", columns, data, Accounts)
                 context["filtered"] = True
@@ -322,7 +328,7 @@ class UgView(FormView):
         else:
             form = QueryForm()
         context['form'] = form
-        context["data"] =  UsersGroups.admin.raw("SELECT * from users_groups") 
+        context["data"] =  UserGroups.admin.raw("SELECT * from user_groups") 
         return context
 
     def render_to_response(self, context):
@@ -335,10 +341,10 @@ class UgView(FormView):
             columns = ["name","description"]
             if(data["form"][0] != "filtrar"):
                 if(data["form"][0] != "exportar"):
-                    context['data'] = UsersGroups.admin.raw(data["form"][0])
+                    context['data'] = UserGroups.admin.raw(data["form"][0])
                 return export_csv_file(request, context['data'],columns,"User Groups")
             else:
-                context["data"],context["consulta"] = build_query("users_groups", columns, data, UsersGroups)
+                context["data"],context["consulta"] = build_query("user_groups", columns, data, UserGroups)
                 context["filtered"] = True
             return super(UgView, self).render_to_response(context)
 

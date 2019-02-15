@@ -10,69 +10,63 @@ from django.db import models
 
 class A2AMappings(models.Model):
     id = models.IntegerField(primary_key=True)
-    target_alias = models.ForeignKey('Aliases', models.DO_NOTHING, db_column='Target_Alias')  # Field name made lowercase.
+    target_alias = models.CharField(max_length=200) # Field name made lowercase.
     request_server = models.CharField(db_column='Request_Server', max_length=200)  # Field name made lowercase.
-    report_id = models.IntegerField()
     admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'a2a_mappings'
-        unique_together = (('id', 'report_id'),)
 
 
 class Accounts(models.Model):
-    id = models.IntegerField()
-    account_name = models.CharField(primary_key=True, max_length=200)
-    application_name = models.CharField(max_length=200, db_column='application_name')
+    id = models.AutoField(primary_key=True)
+    account_name = models.CharField(max_length=200)
+    application_name = models.CharField(max_length=200)
     application_type = models.CharField(max_length=200)
     host_name = models.CharField(max_length=200)
     account_type = models.CharField(max_length=200)
-    verified = models.CharField(max_length=200)
-    report = models.ForeignKey('Report', models.DO_NOTHING)
     admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'accounts'
-        unique_together = (('account_name', 'application_name', 'host_name', 'report'),)
+        unique_together = (('account_name', 'application_name', 'host_name'),)
 
 
 class AccountsDates(models.Model):
-    account_name = models.ForeignKey(Accounts, models.DO_NOTHING, db_column='account_name', related_name='+' )
-    app_name = models.ForeignKey(Accounts, models.DO_NOTHING, db_column='app_name', related_name='+' )
-    host_name = models.CharField(max_length=200)
+    account = models.ForeignKey(Accounts, models.DO_NOTHING, primary_key=True)
     creation_date = models.DateTimeField()
     verification_date = models.DateTimeField()
     last_used = models.DateTimeField()
-    report_id = models.IntegerField()
+    report_date = models.DateTimeField()
     admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'accounts_dates'
+        unique_together = (('account', 'report_date'),)
 
 
 class Aliases(models.Model):
-    alias_name = models.CharField(db_column='Alias_Name', primary_key=True, max_length=200)  # Field name made lowercase.
+    id = models.AutoField(primary_key=True)
+    alias_name = models.CharField(db_column='Alias_Name', max_length=200)  # Field name made lowercase.
     host_name = models.CharField(db_column='Host_Name', max_length=100)  # Field name made lowercase.
     application_name = models.CharField(db_column='Application_Name', max_length=200)  # Field name made lowercase.
     account_name = models.CharField(db_column='Account_Name', max_length=200)  # Field name made lowercase.
-    report_id = models.IntegerField()
     admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'aliases'
-        unique_together = (('alias_name', 'report_id'),)
 
 
 class Applications(models.Model):
-    application_name = models.CharField(db_column='Application_Name', primary_key=True, max_length=200)  # Field name made lowercase.
+    id = models.AutoField(primary_key=True)
+    application_name = models.CharField(db_column='Application_Name', max_length=200)  # Field name made lowercase.
     application_type = models.CharField(db_column='Application_Type', max_length=200)  # Field name made lowercase.
-    host_name = models.CharField(db_column='Host_Name', max_length=200)  # Field name made lowercase.
-    report = models.ForeignKey('Report', models.DO_NOTHING)
+    host_name = models.CharField(max_length=200)  # Field name made lowercase.
     admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'applications'
-        unique_together = (('application_name', 'host_name', 'report'),)
+        unique_together = (('application_name', 'host_name'),)
 
 
 class Report(models.Model):
@@ -87,102 +81,170 @@ class Report(models.Model):
         db_table = 'report'
 
 
-class Servers(models.Model):
-    host_name = models.CharField(db_column='Host_Name', primary_key=True, max_length=100)  # Field name made lowercase.
-    ip_address = models.CharField(db_column='IP_Address', max_length=100)  # Field name made lowercase.
+class ReportA2AMappings(models.Model):
+    mapping = models.ForeignKey(A2AMappings, models.DO_NOTHING, primary_key=True)
     report = models.ForeignKey(Report, models.DO_NOTHING)
     admin = models.Manager()
     class Meta:
         managed = False
+        db_table = 'report_a2a_mappings'
+        unique_together = (('mapping', 'report'),)
+
+
+class ReportAccounts(models.Model):
+    account = models.ForeignKey(Accounts, models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
+    admin = models.Manager()
+    class Meta:
+        managed = False
+        db_table = 'report_accounts'
+        unique_together = (('account', 'report'),)
+
+
+class ReportAliases(models.Model):
+    alias = models.ForeignKey(Aliases, models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
+    admin = models.Manager()
+    class Meta:
+        managed = False
+        db_table = 'report_aliases'
+        unique_together = (('alias', 'report'),)
+
+
+class ReportApplications(models.Model):
+    application = models.ForeignKey(Applications, models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
+    admin = models.Manager()
+    class Meta:
+        managed = False
+        db_table = 'report_applications'
+        unique_together = (('application', 'report'),)
+
+
+class ReportServers(models.Model):
+    server = models.ForeignKey('Servers', models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
+    admin = models.Manager()
+    class Meta:
+        managed = False
+        db_table = 'report_servers'
+        unique_together = (('server', 'report'),)
+
+
+class ReportTargetGroups(models.Model):
+    tg = models.ForeignKey('TargetGroups', models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
+    admin = models.Manager()
+    class Meta:
+        managed = False
+        db_table = 'report_target_groups'
+        unique_together = (('tg', 'report'),)
+
+
+class ReportUserGroups(models.Model):
+    usergroup = models.ForeignKey('UserGroups', models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
+    admin = models.Manager()
+    class Meta:
+        managed = False
+        db_table = 'report_user_groups'
+        unique_together = (('usergroup', 'report'),)
+
+
+class ReportUsers(models.Model):
+    user = models.ForeignKey('Users', models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
+    admin = models.Manager()
+    class Meta:
+        managed = False
+        db_table = 'report_users'
+        unique_together = (('user', 'report'),)
+
+
+class Servers(models.Model):
+    id = models.AutoField(primary_key=True)
+    host_name = models.CharField(db_column='Host_Name', max_length=100)  # Field name made lowercase.
+    ip_address = models.CharField(db_column='IP_Address', max_length=100)  # Field name made lowercase.
+    admin = models.Manager()
+    class Meta:
+        managed = False
         db_table = 'servers'
-        unique_together = (('host_name', 'ip_address', 'report'),)
+        unique_together = (('host_name', 'ip_address'),)
 
 
 class TargetGroups(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(db_column='Name', max_length=200)  # Field name made lowercase.
     type = models.CharField(db_column='Type', max_length=200)  # Field name made lowercase.
     description = models.CharField(db_column='Description', max_length=300)  # Field name made lowercase.
-    report_id = models.IntegerField()
     admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'target_groups'
-        unique_together = (('id', 'report_id'),)
 
 
 class TgAccounts(models.Model):
     tg = models.ForeignKey(TargetGroups, models.DO_NOTHING)
-    account_name = models.ForeignKey(Accounts, models.DO_NOTHING, db_column='account_name', related_name='+' )
-    app_name = models.ForeignKey(Accounts, models.DO_NOTHING, db_column='app_name', related_name='+' )
-    host_name = models.CharField(max_length=200)
-    report_id = models.IntegerField()
+    account = models.ForeignKey(Accounts, models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
     admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'tg_accounts'
+        unique_together = (('account', 'tg', 'report'),)
 
 
-class TgApplications(models.Model):
-    app_name = models.ForeignKey(Applications, models.DO_NOTHING, db_column='app_name', related_name='+' )
-    host_name = models.ForeignKey(Applications, models.DO_NOTHING, db_column='host_name', related_name='+' )
-    tg = models.ForeignKey(TargetGroups, models.DO_NOTHING)
-    report_id = models.IntegerField()
+class UserGroups(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(db_column='Name', max_length=200)  # Field name made lowercase.
+    description = models.CharField(db_column='Description', max_length=300)  # Field name made lowercase.
     admin = models.Manager()
     class Meta:
         managed = False
-        db_table = 'tg_applications'
-
-
-class TgServers(models.Model):
-    tg = models.ForeignKey(TargetGroups, models.DO_NOTHING)
-    host_name = models.ForeignKey(Servers, models.DO_NOTHING, db_column='host_name')
-    report_id = models.IntegerField()
-    admin = models.Manager()
-    class Meta:
-        managed = False
-        db_table = 'tg_servers'
-
-
-class UserInGroup(models.Model):
-    user = models.ForeignKey('Users', models.DO_NOTHING, db_column='user')
-    group_name = models.ForeignKey('UsersGroups', models.DO_NOTHING, db_column='group_name')
-    admin = models.Manager()
-    class Meta:
-        managed = False
-        db_table = 'user_in_group'
+        db_table = 'user_groups'
 
 
 class UserInTg(models.Model):
-    id_tg = models.ForeignKey(TargetGroups, models.DO_NOTHING, db_column='id_tg')
-    user = models.ForeignKey('Users', models.DO_NOTHING, db_column='user')
+    tg_name = models.CharField(primary_key=True, max_length=200)
+    user = models.ForeignKey('Users', models.DO_NOTHING)
+    report_date = models.DateTimeField()
     admin = models.Manager()
     class Meta:
         managed = False
         db_table = 'user_in_tg'
+        unique_together = (('tg_name', 'user', 'report_date'),)
 
 
 class Users(models.Model):
-    user = models.CharField(db_column='User', primary_key=True, max_length=100)  # Field name made lowercase.
-    status = models.CharField(db_column='Status', max_length=100)  # Field name made lowercase.
+    id = models.AutoField(primary_key=True)
+    user = models.CharField(db_column='User', max_length=100)  # Field name made lowercase.
     authentication = models.CharField(db_column='Authentication', max_length=100)  # Field name made lowercase.
     first_name = models.CharField(db_column='First_Name', max_length=200)  # Field name made lowercase.
     last_name = models.CharField(db_column='Last_Name', max_length=200)  # Field name made lowercase.
-    last_login = models.DateTimeField(db_column='Last_Login')  # Field name made lowercase.
-    report_id = models.IntegerField(db_column='report_id')
     admin = models.Manager()
-
     class Meta:
         managed = False
         db_table = 'users'
-        unique_together = (('user', 'report_id'),)
 
 
-class UsersGroups(models.Model):
-    name = models.CharField(db_column='Name', primary_key=True, max_length=200)  # Field name made lowercase.
-    description = models.CharField(db_column='Description', max_length=300)  # Field name made lowercase.
-    report_id = models.IntegerField()
+class UsersInfo(models.Model):
+    user = models.ForeignKey(Users, models.DO_NOTHING, primary_key=True)
+    status = models.CharField(max_length=9, blank=True, null=True)
+    last_login = models.DateTimeField()
+    report = models.ForeignKey(Report, models.DO_NOTHING)
     admin = models.Manager()
     class Meta:
         managed = False
-        db_table = 'users_groups'
-        unique_together = (('name', 'report_id'),)
+        db_table = 'users_info'
+        unique_together = (('user', 'report'),)
+
+
+class VerifiedReport(models.Model):
+    account = models.ForeignKey(Accounts, models.DO_NOTHING, primary_key=True)
+    report = models.ForeignKey(Report, models.DO_NOTHING)
+    verified = models.CharField(max_length=200)
+    admin = models.Manager()
+    class Meta:
+        managed = False
+        db_table = 'verified_report'
+        unique_together = (('account', 'report', 'verified'),)

@@ -7415,7 +7415,7 @@
   --warning: #fed961;
   --danger: #fd3258;
   --light: #f5f7fa;
-  --dark: #ED0722;
+  --dark: rgb(0, 0, 0);
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -13328,7 +13328,7 @@ a.text-light:focus, a.text-light:hover {
   color: #d3dce9 !important; }
 
 .text-dark {
-  color: #ED0722 !important; }
+  color: rgb(0, 0, 0) !important; }
 
 a.text-dark:focus, a.text-dark:hover {
   color: #1b1b21 !important; }
@@ -15434,7 +15434,7 @@ dl {
   .table th {
     font-family: "Roboto", sans-serif;
     font-weight: 500;
-    color: #ED0722; }
+    color: rgb(0, 0, 0); }
   .table td {
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
