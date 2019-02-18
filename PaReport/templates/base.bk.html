@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>PARS</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{%  static "css/style.css" %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static "images/icono.png" %}" />
+</head>
+<body>
+  
+  <div class="container-scroller">
+    
+      <nav class="navbar navbar-default">
+        
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand-logo" href="{% url "index" %}"><img src="{% static "images/scotia.svg" %}"  style="width: 190px;"  alt="Scotia" ></a>
+            </div>
+          </div>
+          <b><font size="2px">Password Authority Report System</font></b>
+          
+          <!--/.container-fluid -->
+        </nav>
+        
+      </div>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item nav-category">
+              <span class="nav-link">GENERAL</span>
+            </li>
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <div class="row row-offcanvas row-offcanvas-right">
+              <!-- partial:partials/_sidebar.html -->
+              <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                  <li class="nav-item nav-category">
+                    <span class="nav-link">GENERAL</span>
+                  </li>
+                </ul>
+              </nav>  
+              <!-- partial -->
+              <div class="container-fluid page-body-wrapper">
+                  <div class="row row-offcanvas row-offcanvas-right">
+                    <!-- partial:partials/_sidebar.html -->
+                    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                      <ul class="nav">
+                        <li class="nav-item nav-category">
+                          <span class="nav-link">GENERAL</span>
+                        </li>
+                          <li class="nav-item">
+                          <a class="nav-link" href="{% url "index" %}">
+                            <span class="menu-title">Inicio</span>
+                            <i class="icon-home  menu-icon"></i>
+                          </a>
+                        </li>
+            
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url "mappings" %}">
+                            <span class="menu-title">A2A Mappings</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url "cuentas" %}">
+                            <span class="menu-title">Accounts</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url "aliases" %}">
+                            <span class="menu-title">Aliases</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url "aplicaciones" %}">
+                            <span class="menu-title">Applications</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url "servidores" %}">
+                            <span class="menu-title">Servers</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'targetgroups' %}">
+                            <span class="menu-title">Target Groups</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url "usuarios" %}">
+                            <span class="menu-title">Users</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{% url 'usergroups' %}">
+                            <span class="menu-title">User Groups</span>
+                            <i class="icon-magnifier menu-icon"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+      </div></div>
+        <div class="content-wrapper">
+            <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">{% block title %}{% endblock %}</h1>
+                  {% block content %}
+                  {% endblock %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          <!-- ROW ENDS -->
+          <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019 <a href="#" target="_blank">Franco Zalavari</a>. All rights reserved.  <i class="mdi mdi-heart text-danger"></i></span>
+          </div>
+        </footer>
+      </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <!-- partial -->
+      </div>
+      <!-- row-offcanvas ends -->
+  </div>
+    <!-- page-body-wrapper ends -->
+
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  <!-- endinject -->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="{% static "js/notify.min.js" %}"></script>
+  <script src="{% static "js/off-canvas.js" %}"></script>
+  <script src="{% static "js/misc.js" %}"></script>
+  <script src="{% static "js/dashboard.js" %}"></script>
+  {% block jsincludes %}
+  {% endblock %}
+  <!-- End custom js for this page-->
+</body>
+
+</html>

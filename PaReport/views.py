@@ -54,7 +54,7 @@ def export_csv_file(request, queryset, columns,table_name):
         elif(table_name == "Target Groups"):
             writer.writerow([row.name,row.type,row.description])
         elif(table_name == "Users"):
-            writer.writerow([row.user, row.status, row.authentication, row.first_name, row.last_name, row.last_login])
+            writer.writerow([row.user, row.authentication, row.first_name, row.last_name])
         elif(table_name == "User Groups"):
             writer.writerow([row.name, row.description])
     return response
@@ -87,7 +87,7 @@ class CuentasView(FormView):
             if(data["form"][0] != "filtrar"):
                 if(data["form"][0] != "exportar"):
                     if(data["form"][0] == "Privates"):
-                        query = "select distinct * from accounts where account_name not like 'fcssa%%' and account_name not like 'FIREC%%' order by host_name"
+                        query = "select distinct * from accounts where account_name not like 'fcssa%%' and account_name not like 'PA2%%' and account_name not like 'TA%%' and account_name not like 'FIREC%%' and account_name not like 'FC-UAT%%' and account_name not like 'desa%%' and account_name not like 'FC-%%' and account_name not like 'FC_%%' and account_name not like 'TB%%' and account_name not like 'tb%%' and account_name not like 'TC%%' and account_name not like 'DA%%' and account_name not like 'IA%%' and account_name not like 'ia%%' and account_name not like 'DA%%' and account_name not like 'sclclavelo' and account_name not like 'ta%%' and account_name not like 'IB%%' and account_name not like 'DB%%' and account_name not like 'DC%%' and account_name not like 'IC%%' and account_name not like 'PCLFIRE%%' and account_name not like 'fcist_1' order by host_name"
                         context["data"],context["consulta"] = Accounts.admin.raw(query), str(query)
                         print(query)
                         print(context["data"])
@@ -128,11 +128,16 @@ class UsuariosView(FormView):
             context = self.get_context_data()
             data = self.request.POST
             data = dict(data) # De querydict a diccionario python
-            columns = ["user","status","authentication", "first_name", "last_Name", "last_login"]
+            columns = ["user","authentication", "first_name", "last_Name"]
             if(data["form"][0] != "filtrar"):
                 if(data["form"][0] != "exportar"):
-                    context['data'] = Users.admin.raw(data["form"][0])
-                return export_csv_file(request, context['data'],columns,"Users")
+                    if(data["form"][0] == "CHL"):
+                        query = "SELECT * FROM `users` WHERE `Authentication` LIKE 'CHL'"
+                        context["data"],context["consulta"] = Users.admin.raw(query), str(query)
+                        context["filtered"] = True
+                    else:
+                        context['data'] = Users.admin.raw(data["form"][0])
+                        return export_csv_file(request, context['data'],columns,"Users")
             else:
                 context["data"],context["consulta"] = build_query("users", columns, data, Users)
                 context["filtered"] = True

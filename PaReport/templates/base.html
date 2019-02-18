@@ -19,109 +19,71 @@
 <body>
   
   <div class="container-scroller">
-    
-      <nav class="navbar navbar-default">
-        
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand-logo" href="{% url "index" %}"><img src="{% static "images/scotia.svg" %}"  style="width: 190px;"  alt="Scotia" ></a>
-            </div>
-          </div>
-          <b><font size="2px">Password Authority Report System</font></b>
+      <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    </nav>
+      <nav class="navbar navbar-expand-lg navbar-light">
+              <a class="navbar-brand" href="{% url "index" %}"><img src="{% static "images/scotia_IC.jpg" %}"  style="width: 300px;"  alt="Scotia" ></a>
+            
           
           <!--/.container-fluid -->
         </nav>
-        
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            
+          </nav>
       </div>
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <div class="row row-offcanvas row-offcanvas-right">
-        <!-- partial:partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-          <ul class="nav">
-            <li class="nav-item nav-category">
-              <span class="nav-link">GENERAL</span>
-            </li>
-          </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                  <a class="nav-link" href="{% url "index" %}">
+                      <font size="3px"><span class="menu-title"></span>
+                      <i class="icon-home  menu-icon"></i></font>
+                    </a>
+
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url "mappings" %}">
+                    <span class="menu-title">A2A Mappings</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "cuentas" %}">
+                    <span class="menu-title">Accounts</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "aliases" %}">
+                    <span class="menu-title">Aliases</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "aplicaciones" %}">
+                    <span class="menu-title">Applications</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "servidores" %}">
+                    <span class="menu-title">Servers</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'targetgroups' %}">
+                    <span class="menu-title">Target Groups</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url "usuarios" %}">
+                    <span class="menu-title">Users</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'usergroups' %}">
+                    <span class="menu-title">User Groups</span>
+                  </a>
+                </li>
+            </ul>
         </nav>
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-            <div class="row row-offcanvas row-offcanvas-right">
-              <!-- partial:partials/_sidebar.html -->
-              <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                  <li class="nav-item nav-category">
-                    <span class="nav-link">GENERAL</span>
-                  </li>
-                </ul>
-              </nav>  
-              <!-- partial -->
-              <div class="container-fluid page-body-wrapper">
-                  <div class="row row-offcanvas row-offcanvas-right">
-                    <!-- partial:partials/_sidebar.html -->
-                    <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                      <ul class="nav">
-                        <li class="nav-item nav-category">
-                          <span class="nav-link">GENERAL</span>
-                        </li>
-                          <li class="nav-item">
-                          <a class="nav-link" href="{% url "index" %}">
-                            <span class="menu-title">Inicio</span>
-                            <i class="icon-home  menu-icon"></i>
-                          </a>
-                        </li>
-            
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url "mappings" %}">
-                            <span class="menu-title">A2A Mappings</span>
-                            <i class="icon-magnifier menu-icon"></i>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url "cuentas" %}">
-                            <span class="menu-title">Accounts</span>
-                            <i class="icon-magnifier menu-icon"></i>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url "aliases" %}">
-                            <span class="menu-title">Aliases</span>
-                            <i class="icon-magnifier menu-icon"></i>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url "aplicaciones" %}">
-                            <span class="menu-title">Applications</span>
-                            <i class="icon-magnifier menu-icon"></i>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url "servidores" %}">
-                            <span class="menu-title">Servers</span>
-                            <i class="icon-magnifier menu-icon"></i>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'targetgroups' %}">
-                            <span class="menu-title">Target Groups</span>
-                            <i class="icon-magnifier menu-icon"></i>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url "usuarios" %}">
-                            <span class="menu-title">Users</span>
-                            <i class="icon-magnifier menu-icon"></i>
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{% url 'usergroups' %}">
-                            <span class="menu-title">User Groups</span>
-                            <i class="icon-magnifier menu-icon"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-      </div></div>
+        
         <div class="content-wrapper">
             <div class="row">
             <div class="col-12">
@@ -130,19 +92,12 @@
                   <h1 class="card-title">{% block title %}{% endblock %}</h1>
                   {% block content %}
                   {% endblock %}
-                </div>
               </div>
             </div>
           </div>
-
         </div>
-          <!-- ROW ENDS -->
-          <footer class="footer">
-          <div class="container-fluid clearfix">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019 <a href="#" target="_blank">Franco Zalavari</a>. All rights reserved.  <i class="mdi mdi-heart text-danger"></i></span>
-          </div>
-        </footer>
-      </div>
+        </div>
+          <!-- ROW ENDS --> 
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <!-- partial -->

@@ -1,6 +1,6 @@
 {%  extends "base.html" %}
 {% load staticfiles %}
-{% block title %}User Groups{% endblock %}
+{% block title %}Tabla: User Groups{% endblock %}
 {% block jsincludes %}
     <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
     <script src="{% static "js/jquery.dynatable.js" %}"></script>
@@ -37,7 +37,7 @@
 <form method="post">
         {% csrf_token %}
     <div class="responsivetable jsresponsive" style="max-width: 1297px;">
-        <table class="data">
+        <table class="table table-hover table-responsive">
     <thead>
         <tr>
             <th>Columna</th>
@@ -50,23 +50,23 @@
     <tr class="noclick">
         <th>Name</th>
     <td>
-        <select id="ColumnOperator0" name="criterio">
-            <option value="LIKE">LIKE</option><option value="LIKE %...%">LIKE %...%</option><option value="NOT LIKE">NOT LIKE</option><option value="=">=</option><option value="!=">!=</option><option value="REGEXP">REGEXP</option><option value="REGEXP ^...$">REGEXP ^...$</option><option value="NOT REGEXP">NOT REGEXP</option><option value="= ''">= ''</option><option value="!= ''">!= ''</option><option value="IN (...)">IN (...)</option><option value="NOT IN (...)">NOT IN (...)</option><option value="BETWEEN">BETWEEN</option><option value="NOT BETWEEN">NOT BETWEEN</option><option value="IS NULL">IS NULL</option><option value="IS NOT NULL">IS NOT NULL</option>
+        <select id="ColumnOperator0" class="form-control" name="criterio">
+            <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>
         </select>
     </td>
     <td data-type="int(11)">
-        <input type="text" name="detalle" size="30" class="textfield" id="fieldID_0">
+        <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
     </td>
     </tr>
     <tr class="noclick">
         <th>Description</th>
     <td>
-        <select id="ColumnOperator0" name="criterio">
-            <option value="LIKE">LIKE</option><option value="LIKE %...%">LIKE %...%</option><option value="NOT LIKE">NOT LIKE</option><option value="=">=</option><option value="!=">!=</option><option value="REGEXP">REGEXP</option><option value="REGEXP ^...$">REGEXP ^...$</option><option value="NOT REGEXP">NOT REGEXP</option><option value="= ''">= ''</option><option value="!= ''">!= ''</option><option value="IN (...)">IN (...)</option><option value="NOT IN (...)">NOT IN (...)</option><option value="BETWEEN">BETWEEN</option><option value="NOT BETWEEN">NOT BETWEEN</option><option value="IS NULL">IS NULL</option><option value="IS NOT NULL">IS NOT NULL</option>
+        <select id="ColumnOperator0" class="form-control" name="criterio">
+            <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>
         </select>
     </td>
     <td data-type="int(11)">
-        <input type="text" name="detalle" size="30" class="textfield" id="fieldID_0">
+        <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
     </td>
     </tr>
 
