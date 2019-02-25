@@ -84,13 +84,20 @@ class CuentasView(FormView):
             data = self.request.POST
             data = dict(data) # De querydict a diccionario python
             columns = ["account_name", "application_name", "application_type", "host_name", "account_type"]
+            print(data)
             if(data["form"][0] != "filtrar"):
                 if(data["form"][0] != "exportar"):
                     if(data["form"][0] == "Privates"):
                         query = "select distinct * from accounts where account_name not like 'fcssa%%' and account_name not like 'PA2%%' and account_name not like 'TA%%' and account_name not like 'FIREC%%' and account_name not like 'FC-UAT%%' and account_name not like 'desa%%' and account_name not like 'FC-%%' and account_name not like 'FC_%%' and account_name not like 'TB%%' and account_name not like 'tb%%' and account_name not like 'TC%%' and account_name not like 'DA%%' and account_name not like 'IA%%' and account_name not like 'ia%%' and account_name not like 'DA%%' and account_name not like 'sclclavelo' and account_name not like 'ta%%' and account_name not like 'IB%%' and account_name not like 'DB%%' and account_name not like 'DC%%' and account_name not like 'IC%%' and account_name not like 'PCLFIRE%%' and account_name not like 'fcist_1' order by host_name"
                         context["data"],context["consulta"] = Accounts.admin.raw(query), str(query)
-                        print(query)
-                        print(context["data"])
+                        context["filtered"] = True
+                    elif(data["form"][0] == "nowin"):
+                        query = "select distinct * from accounts where application_type not like '%%Windows%%'"
+                        context["data"],context["consulta"] = Accounts.admin.raw(query), str(query)
+                        context["filtered"] = True
+                    elif(data["form"][0] == "win"):
+                        query = "select distinct * from accounts where application_type like '%%Windows%%'"
+                        context["data"],context["consulta"] = Accounts.admin.raw(query), str(query)
                         context["filtered"] = True
                     else:
                         context['data'] = Accounts.admin.raw(data["form"][0])

@@ -47,17 +47,25 @@
 <h6>Exportar tabla a CSV:</h6>
 <p>Mediante esta acción ese procede a exportar la tabla presentada actualmente. Esto significa que el archivo CSV exportado, incorporará los datos de la tabla que sean visibles, es decir, si se realiza un filtro sobre la tabla, el archivo CSV incluirá los datos resultantes de dicho filtrado.</p>
 <h5 class="text-danger">Acciones</h5>
-<table class="table table-responsive">
+<table class="table">
         <tr>
             <td><div class="dropdown">
                     <button class="btn btn-light xls dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Consulta predefinida
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <form method="post">{% csrf_token %}
                       <button class="dropdown-item" type="submit">Cuentas Privilegiadas<input type="hidden" name="form" value="Privates"></button>
-                    </div>
-                  </div>
+                      </form>  
+                      <form method="post">{% csrf_token %}
+                      <button class="dropdown-item" type="submit">Cuentas Windows<input type="hidden" name="form" value="win"></button>
+                      </form>  
+                      <form method="post">{% csrf_token %}
+                      <button class="dropdown-item" type="submit">Cuentas No Windows<input type="hidden" name="form" value="nowin"></button>
+                      </form>  
+                      </div>
                 </td>
+            </form>
     {% if filtered%}
     <form method="post">{% csrf_token %}<td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="{{consulta}}" class="textfield"></button> </td>
     </form>
