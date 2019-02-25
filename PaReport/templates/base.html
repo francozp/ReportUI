@@ -43,7 +43,7 @@
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="{% url "mappings" %}">
-                    <span class="menu-title">A2A Mappings</span>
+                    <span class="menu-title">A2A-Mappings</span>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -85,25 +85,48 @@
         </nav>
         
         <div class="content-wrapper">
-            <div class="row">
+          
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
                   <h1 class="card-title">{% block title %}{% endblock %}</h1>
                   {% block content %}
                   {% endblock %}
+                </div>
               </div>
             </div>
+            <br>
+          <div class="col-12">
+          <div class="row">
+              <div class="col-sm-6 d-flex align-items-stretch">
+                  <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">{% block title1 %}{% endblock %}</h1>
+                        {% block content1 %}
+                        {% endblock %}
+                      
+                    </div>
+                  </div>
+              </div>
+            <div class="col-sm-6 d-flex align-items-stretch">
+              <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">{% block title2 %}{% endblock %}</h1>
+                    {% block content2 %}
+                    {% endblock %}
+                </div>
+              </div>
+            </div>
+            
+            </div>
           </div>
-        </div>
         </div>
           <!-- ROW ENDS --> 
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <!-- partial -->
-      </div>
       <!-- row-offcanvas ends -->
-  </div>
+
     <!-- page-body-wrapper ends -->
 
   <!-- container-scroller -->

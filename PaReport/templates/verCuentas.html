@@ -1,11 +1,15 @@
 {%  extends "base.html" %}
 {% load staticfiles %}
 {% load widget_tweaks %}
-{% block title %}Tabla: Accounts{% endblock %}
+{% block title %}Tabla: Accounts&ensp; <i class="material-icons">
+        table_chart
+        </i>{% endblock %}
 {% block jsincludes %}
     <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
     <link rel="stylesheet" href="{% static "css/tableexport.css" %}">
     <script src="{% static "js/export.js" %}"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <script src="{% static "js/jquery.dynatable.js" %}"></script>
     <script> $(function() {$('#tabla-stock').dynatable();} );</script>
 {% endblock %}
@@ -32,33 +36,48 @@
                 {% endfor %}
     </tbody>
 </table>
-<table>
-    <tr>
-{% if filtered%}
-<form method="post">{% csrf_token %}<td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="{{consulta}}" class="textfield"></button> </td><td><em>&nbsp;&nbsp;&nbsp;Exportar los datos de la tabla a un archivo CSV</em></td>
-</form>
-{%else%}
-<form method="post">{% csrf_token %}<td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="exportar"></button></td><td> <em>&nbsp;&nbsp;&nbsp;Exportar los datos de la tabla a un archivo CSV</em></td>
-</form>
-{%endif%}
-<form method="post">{% csrf_token %}
-    </tr><tr>
-<td><div class="dropdown">
-    <button class="btn btn-light xls dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Consulta predefinida
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-      <button class="dropdown-item" type="submit">Cuentas Privilegiadas<input type="hidden" name="form" value="Privates"></button>
-    </div>
-  </div>
-</td>
-<td><em>&nbsp;&nbsp;&nbsp;Filtrar la tabla utilizando consultas predefinidas.</em></td>
-</form>
-</tr>
-</table>
-<br><hr style="width: 100%; color: red; height: 1px; background-color:red;" />
+{% endblock %}
+{% block title1 %}Herramientas de la Tabla&ensp;<i class="material-icons">
+        build
+        </i>{% endblock %}
+{% block content1 %}
+<h5 class="text-danger">Información</h5>
+<h6>Consulta predefinida:</h6>
+<p>Permite realizar filtros sobre la tabla utilizando consultas previamente construidas que suelen ser utilizadas. Los resultados del filtro serán presentados en la tabla superior inmediatamente, siendo posible su exportación a CSV utilizando el botón dispuesto a continuación.</p>
+<h6>Exportar tabla a CSV:</h6>
+<p>Mediante esta acción ese procede a exportar la tabla presentada actualmente. Esto significa que el archivo CSV exportado, incorporará los datos de la tabla que sean visibles, es decir, si se realiza un filtro sobre la tabla, el archivo CSV incluirá los datos resultantes de dicho filtrado.</p>
+<h5 class="text-danger">Acciones</h5>
+<table class="table table-responsive">
+        <tr>
+            <td><div class="dropdown">
+                    <button class="btn btn-light xls dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Consulta predefinida
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <button class="dropdown-item" type="submit">Cuentas Privilegiadas<input type="hidden" name="form" value="Privates"></button>
+                    </div>
+                  </div>
+                </td>
+    {% if filtered%}
+    <form method="post">{% csrf_token %}<td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="{{consulta}}" class="textfield"></button> </td>
+    </form>
+    {%else%}
+    <form method="post">{% csrf_token %}<td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="exportar"></button></td>
+    </form>
+    {%endif%}
+    <form method="post">{% csrf_token %}
 
-<h1 class="text-danger">Búsqueda por valor&ensp;&ensp;<i class="icon-magnifier menu-icon"></i></h1>
+    
+    </form>
+    </tr>
+    </table>
+{% endblock %}
+{% block title2 %}Búsqueda por valor&ensp;<i class="material-icons">
+        search
+        </i>    
+{% endblock %}
+{% block content2 %}
+
 <form method="post">
         {% csrf_token %}
     <div class="responsivetable jsresponsive" style="max-width: 1297px;">
@@ -124,11 +143,7 @@
 
     </tbody></div>
 </table>
-</div></fieldset></fieldset></fieldset></fieldset>
-
-<div class="clearfloat"></div>
-</div></div></fieldset>
-<button type="submit" class="btn btn-block btn-danger btn-lg">Consulta<input type="hidden" name="form" value="filtrar"></button>
+<button type="submit" class="btn btn-block btn-danger">Consulta<input type="hidden" name="form" value="filtrar"></button>
 </form>
 
 {% endblock %}

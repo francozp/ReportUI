@@ -60,7 +60,7 @@ def export_csv_file(request, queryset, columns,table_name):
     return response
 
 class IndexView(TemplateView):
-    template_name = "index.html" 
+    template_name = "renta.html" 
 
 class CuentasView(FormView):
     template_name = "verCuentas.html"
