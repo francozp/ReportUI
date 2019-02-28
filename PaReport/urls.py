@@ -17,7 +17,7 @@ from django.urls import path, include, re_path, reverse
 from .views import *
 
 urlpatterns = [
-    path('index', IndexView.as_view(), name = 'index'),
+    path('', CuentasView.as_view(), name = ''),
     path('cuentas', CuentasView.as_view(success_url='/cuentas'), name = 'cuentas'),
     path('usuarios', UsuariosView.as_view(), name = 'usuarios'),
     path('aplicaciones', AplicacionesView.as_view(), name = 'aplicaciones'),

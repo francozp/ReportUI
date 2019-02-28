@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'PaReport.wsgi.application'
 DATABASES = { #Base de datos MySql local
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pa_report',
+        'NAME': 'passauth_nu',
         'USER': 'root',
-        'PASSWORD': 'abcd.1234',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
