@@ -1,9 +1,11 @@
 {%  extends "base.html" %}
+
 {% load staticfiles %}
+
 {% load widget_tweaks %}
-{% block title %}Tabla: Accounts&ensp; <i class="material-icons">
-        table_chart
-        </i>{% endblock %}
+
+{% block title %}Tabla: Accounts&ensp; <i class="material-icons">table_chart</i>{% endblock %}
+
 {% block jsincludes %}
     <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
     <link rel="stylesheet" href="{% static "css/tableexport.css" %}">
@@ -14,6 +16,7 @@
     <script> $(function() {$('#tabla-stock').dynatable();} );</script>
 {% endblock %}
 
+<!--------------------------------------- CONTENT --------------------------------------->
 {% block content %}
 
 <table id="tabla-stock">
@@ -25,71 +28,75 @@
         <th>Account Type</th>
     </thead>
     <tbody>
-            {% for registro in data%}
-                  <tr>
-                      <td>{{registro.account_name}}</td>
-                      <td>{{registro.application_name}}</td>
-                      <td>{{registro.application_type}}</td>
-                      <td>{{registro.host_name}}</td>
-                      <td>{{registro.account_type}}</td>
-                  </tr>
-                {% endfor %}
+        {% for registro in data%}
+            <tr>
+                <td>{{registro.account_name}}</td>
+                <td>{{registro.application_name}}</td>
+                <td>{{registro.application_type}}</td>
+                <td>{{registro.host_name}}</td>
+                <td>{{registro.account_type}}</td>
+            </tr>
+        {% endfor %}
     </tbody>
 </table>
+
 {% endblock %}
-{% block title1 %}Herramientas de la Tabla&ensp;<i class="material-icons">
-        build
-        </i>{% endblock %}
+
+<!--------------------------------------- CONTENT- 1 --------------------------------------->
+{% block title1 %}Herramientas de la Tabla&ensp;<i class="material-icons">build</i>{% endblock %}
+
 {% block content1 %}
+
 <h5 class="text-danger">Información</h5>
 <h6>Consulta predefinida:</h6>
-<p>Permite realizar filtros sobre la tabla utilizando consultas previamente construidas que suelen ser utilizadas. Los resultados del filtro serán presentados en la tabla superior inmediatamente, siendo posible su exportación a CSV utilizando el botón dispuesto a continuación.</p>
+    <p>Permite realizar filtros sobre la tabla utilizando consultas previamente construidas que suelen ser utilizadas. Los resultados del filtro serán presentados en la tabla superior inmediatamente, siendo posible su exportación a CSV utilizando el botón dispuesto a continuación.</p>
 <h6>Exportar tabla a CSV:</h6>
-<p>Mediante esta acción ese procede a exportar la tabla presentada actualmente. Esto significa que el archivo CSV exportado, incorporará los datos de la tabla que sean visibles, es decir, si se realiza un filtro sobre la tabla, el archivo CSV incluirá los datos resultantes de dicho filtrado.</p>
+    <p>Mediante esta acción ese procede a exportar la tabla presentada actualmente. Esto significa que el archivo CSV exportado, incorporará los datos de la tabla que sean visibles, es decir, si se realiza un filtro sobre la tabla, el archivo CSV incluirá los datos resultantes de dicho filtrado.</p>
 <h5 class="text-danger">Acciones</h5>
+
 <table class="table">
-        <tr>
-            <td><div class="dropdown">
-                    <button class="btn btn-light xls dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <tr>
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-light xls dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Consulta predefinida
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <form method="post">{% csrf_token %}
-                      <button class="dropdown-item" type="submit">Cuentas Privilegiadas<input type="hidden" name="form" value="Privates"></button>
-                      </form>  
-                      <form method="post">{% csrf_token %}
-                      <button class="dropdown-item" type="submit">Cuentas Windows<input type="hidden" name="form" value="win"></button>
-                      </form>  
-                      <form method="post">{% csrf_token %}
-                      <button class="dropdown-item" type="submit">Cuentas No Windows<input type="hidden" name="form" value="nowin"></button>
-                      </form>  
-                      </div>
-                </td>
-            </form>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form method="post">{% csrf_token %}
+                        <button class="dropdown-item" type="submit">Cuentas Privilegiadas<input type="hidden" name="form" value="Privates"></button>
+                    </form>  
+                    <form method="post">{% csrf_token %}
+                        <button class="dropdown-item" type="submit">Cuentas Windows<input type="hidden" name="form" value="win"></button>
+                    </form>  
+                    <form method="post">{% csrf_token %}
+                        <button class="dropdown-item" type="submit">Cuentas No Windows<input type="hidden" name="form" value="nowin"></button>
+                    </form>  
+                </div>
+        </td>
+
     {% if filtered%}
-    <form method="post">{% csrf_token %}<td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="{{consulta}}" class="textfield"></button> </td>
+    <form method="post">{% csrf_token %}
+        <td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="{{consulta}}" class="textfield"></button> </td>
     </form>
     {%else%}
-    <form method="post">{% csrf_token %}<td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="exportar"></button></td>
+    <form method="post">{% csrf_token %}
+        <td><button type="submit" class="btn btn-light csv"> Exportar tabla a CSV<input type="hidden" name="form" value="exportar"></button></td>
     </form>
     {%endif%}
-    <form method="post">{% csrf_token %}
-
-    
-    </form>
     </tr>
-    </table>
+
+</table>
 {% endblock %}
-{% block title2 %}Búsqueda por valor&ensp;<i class="material-icons">
-        search
-        </i>    
-{% endblock %}
+
+<!--------------------------------------- CONTENT-2 --------------------------------------->
+{% block title2 %}Búsqueda por valor&ensp;<i class="material-icons">search</i>{% endblock %}
+
 {% block content2 %}
 
 <form method="post">
-        {% csrf_token %}
-    <div class="responsivetable jsresponsive" style="max-width: 1297px;">
-    <table class="table table-hover table-responsive">
+    {% csrf_token %}
+    <div class="responsivetable jsresponsive">
+    <table class="table table-responsive table-bordered table-condensed">
     <thead>
         <tr>
             <th>Columna</th>
@@ -99,59 +106,65 @@
     </thead>
     
     <tbody>
+
     <tr class="noclick">
         <th>Account Name</th>
-    <td>
+        <td>
         <select id="ColumnOperator0" class="form-control" name="criterio">
             <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>
-    </td>
-    <td data-type="int(11)">
-        <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
-    </td>
+        </td>
+        <td data-type="int(11)">
+            <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
+        </td>
     </tr>
+
     <tr class="noclick">
         <th>Application Name</th>
-    <td>
-        <select id="ColumnOperator0" class="form-control" name="criterio">
-                <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>        </select>
-    </td>
-    <td data-type="int(11)">
-        <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
-    </td>
+        <td>
+            <select id="ColumnOperator0" class="form-control" name="criterio">
+                    <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>        </select>
+        </td>
+        <td data-type="int(11)">
+            <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
+        </td>
     </tr>
+
     <tr class="noclick">
         <th>Application Type</th>
-    <td>
-        <select id="ColumnOperator0"  class="form-control" name="criterio">
-                <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>        </select>
-    </td>
-    <td data-type="int(11)">
-        <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
-    </td>
+        <td>
+            <select id="ColumnOperator0"  class="form-control" name="criterio">
+                    <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>        </select>
+        </td>
+        <td data-type="int(11)">
+            <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
+        </td>
     </tr>
+
     <tr class="noclick">
         <th>Host Name</th>
-    <td>
-        <select id="ColumnOperator0" class="form-control" name="criterio">
-                <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>        </select>
-    </td>
-    <td data-type="int(11)">
-        <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
-    </td>
+        <td>
+            <select id="ColumnOperator0" class="form-control" name="criterio">
+                    <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>        </select>
+        </td>
+        <td data-type="int(11)">
+            <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
+        </td>
     </tr>
+
     <tr class="noclick">
         <th>Account Type</th>
-    <td>
-        <select id="ColumnOperator0" class="form-control" name="criterio">
-                <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>        </select>
-    </td>
-    <td data-type="int(11)">
-        <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
-    </td>
-
-    </tbody></div>
-</table>
+        <td>
+            <select id="ColumnOperator0" class="form-control" name="criterio">
+                    <option value="LIKE">Igual a</option><option value="LIKE %...%">Parecido a</option><option value="NOT LIKE">Distinto a</option>        </select>
+        </td>
+        <td data-type="int(11)">
+            <input type="text" name="detalle" size="30" class="form-control" id="fieldID_0">
+        </td>
+    </tr>
+    </tbody>
+</table></div>
 <button type="submit" class="btn btn-block btn-danger">Consulta<input type="hidden" name="form" value="filtrar"></button>
 </form>
+</div>
 
 {% endblock %}

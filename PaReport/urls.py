@@ -25,5 +25,6 @@ urlpatterns = [
     path('aliases', AliasesView.as_view(), name = 'aliases'),
     path('mappings', MappingsView.as_view(), name = 'mappings'),
     path('targetgroups', TgView.as_view(), name = 'targetgroups'),
-    path('usergroups', UgView.as_view(), name = 'usergroups')
+    path('usergroups', UgView.as_view(), name = 'usergroups'),
+    path('reports', ReportsView.as_view(), name = 'reports')
 ]

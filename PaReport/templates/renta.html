@@ -16,198 +16,121 @@ Renta Fija
 
 {% block content %}
 
-<!-- Example split danger button -->
-<table>
-    <tr>
-        <form method="post">
-            {% csrf_token %}
-    <tr>
-        <td>
-            Producto
-        </td>
-        <td>
-            Benchmark
-        </td>
-        
-    </tr>
 
-
-    <td>
-        <div class="btn-group">
-            <button type="button" class="btn btn-danger">
-                {% if prod %}
-                {{prod}}
-                {% else %}
-                Elegir Producto
-                {% endif %}
-            </button>
-            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu">
-                {% for option in object_lista %}
-                {% for obj in option %}
-                <button name="Producto" class="dropdown-item" value='{{obj.nombre}}'>{{obj.nombre}}</button>
-                {% endfor %}
-                {% endfor %}
-            </div>
-        </div>
-    </td>
-
-
-    <td>
-        <div class="btn-group">
-            <button type="button" class="btn btn-danger">
-                {% if vari %}
-                {{vari}}
-                {% else %}
-                Elegir Variante
-                {% endif %}
-            </button>
-            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu">
-                {%if prod %}
-                <input type="hidden" name="Product" value='{{prod}}' />
-                {% endif %}
-                {% for obj in variante %}
-                <button name="Variante" class="dropdown-item" value='{{obj.Variantes}}'>{{obj.Variantes}}</button>
-                {% endfor %}
-            </div>
-        </div>
-    </td>
-
-
-    </tr>
-    
-    <tr>
-        <p></p>
-    </tr>
-    <tr>
-        <p></p>
-    </tr>
-</table>
-
-<div class="card">
-    <div class="card-header">Informacion {{prod}} {{mone}}:</div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <table class="table table-hover table-responsive">
-                <thead>
-                    <tr>
-                        <th>Emisor</th>
-                        <th>Valuta</th>
-                        <th>Custodio</th>
-                        <th>Sistema Custodio</th>
-                        
-                    </tr>
-                </thead>
-
-                <tbody>
+<div id="accordion">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <div>
+                    <h5 class="mb-0">
+                        <button class="btn btn-block btn-danger btn-lg" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Producto 1 bla bla bla
+                        </button>
+                    </h5>
+                </div>
                     
-                    {% for b in BO %}
-                    <tr>
-                        <td>
-                            {{b.moneda}}
-                        </td>
-                        <td>
-                            {{b.Modalidad}}
-                        </td>
-                        <td>
-                            {{b.def_Fixing}}
-                        </td>
-                        {% endfor %}
-                        <td>
-                            {{nombre.custodio}}
-                        </td>
-                    </tr>
-                </tbody>
-                </table>
-                <table class="table table-hover table-responsive">
-                <thead>
-                    <tr>
-                        <th>Acta</th>
-                        <th>Fecha Acta</th>
-                        <th>Observaciones</th>
-                    </tr>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {{Acta}}
-                            </td>
-                            <td>
-                                {{Fecha_Acta}}
-                            </td>
-                            <td>
-                                {{Obs}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </thead>
-            </table>
-        </li>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula lorem libero. Pellentesque lobortis, dolor ac tristique laoreet, diam tortor egestas orci, vel maximus velit nibh quis magna. Integer sed tempor leo. Praesent lorem enim, vulputate at ultricies eget, ornare nec magna. Curabitur cursus consequat ullamcorper. Phasellus posuere hendrerit magna, eu maximus leo semper sit amet. In id urna finibus, dictum turpis quis, fringilla nisi. Nunc lacinia, diam quis iaculis volutpat, justo mauris ultrices diam, id malesuada dolor nisl sit amet ante. Maecenas tristique pretium neque. Ut eu placerat dolor. Nullam ut luctus turpis, et consectetur felis. Vestibulum justo leo, eleifend id sollicitudin eu, varius ut diam. Sed id est lacus. Phasellus gravida libero ex, vitae luctus erat cursus et.
 
-        <li class="list-group-item">
-            <table class="table table-hover table-responsive">
-                <thead>
-                    <tr>
-                        <th>Plazo Maximo</th>
-                        <th>Observaciones</th>
-                        <th>Grupo</th>
-                        <th>Mesa</th>
+                        Donec condimentum auctor sapien, a interdum tellus semper ac. Duis posuere velit neque, vitae eleifend eros elementum ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas condimentum consequat posuere. Nunc auctor vel nibh eget egestas. Vivamus mollis venenatis mauris, ac accumsan libero luctus at. In in aliquet diam.
+                        
+                        Duis eget sagittis urna, ut bibendum sapien. In consequat vestibulum ex, a facilisis elit accumsan at. Duis interdum rutrum aliquam. Aenean facilisis tempor felis non mollis. Nunc ac neque a erat cursus eleifend. Quisque non pretium nibh. Nulla sagittis purus eget magna ultrices, quis suscipit diam ultrices. Nunc lectus nibh, lobortis sed enim sed, pretium facilisis sapien. Nunc elit massa, dignissim sed nisi ut, suscipit pretium metus. Donec pharetra, augue in varius pharetra, nibh nisl malesuada turpis, eget luctus orci mi eget nunc. Morbi diam nibh, luctus ac mauris ut, viverra scelerisque nisl. Morbi enim odio, tincidunt nec ipsum vitae, venenatis auctor nisi. Nulla vehicula sed magna vitae scelerisque. Quisque nec diam nunc. Sed volutpat efficitur fringilla. Suspendisse ultricies enim lorem, vitae luctus odio pulvinar non.
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    </tr>
-                </thead>
+        <div class="col-sm-4">
+            <div class="card">
+                <div>
+                    <h5 class="mb-0">
+                        <button class="btn btn-danger btn-block collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Producto 2 bla
+                        </button>
+                    </h5>
+                </div>
+                
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula lorem libero. Pellentesque lobortis, dolor ac tristique laoreet, diam tortor egestas orci, vel maximus velit nibh quis magna. Integer sed tempor leo. Praesent lorem enim, vulputate at ultricies eget, ornare nec magna. Curabitur cursus consequat ullamcorper. Phasellus posuere hendrerit magna, eu maximus leo semper sit amet. In id urna finibus, dictum turpis quis, fringilla nisi. Nunc lacinia, diam quis iaculis volutpat, justo mauris ultrices diam, id malesuada dolor nisl sit amet ante. Maecenas tristique pretium neque. Ut eu placerat dolor. Nullam ut luctus turpis, et consectetur felis. Vestibulum justo leo, eleifend id sollicitudin eu, varius ut diam. Sed id est lacus. Phasellus gravida libero ex, vitae luctus erat cursus et.
 
-                <tbody>
-                    <tr>
-                        {% for Aps in A %}
-                        {% for x in Aps %}
-                        <td>{{x.Plazo_max}}</td>
-                        <td>{{x.Obs}}</td>
-                        <td>{{x.grupo}}</td>
-                        <td>{{x.Trading_Desk}}</td>
-                        <td></td>
-                        <td></td>
-                        <td>{{x.comment}}</td>
-                        {% endfor %}
-                        {% endfor %}
-                    </tr>
-                </tbody>
-            </table>
-        </li>
+                        Donec condimentum auctor sapien, a interdum tellus semper ac. Duis posuere velit neque, vitae eleifend eros elementum ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas condimentum consequat posuere. Nunc auctor vel nibh eget egestas. Vivamus mollis venenatis mauris, ac accumsan libero luctus at. In in aliquet diam.
+                        
+                        Duis eget sagittis urna, ut bibendum sapien. In consequat vestibulum ex, a facilisis elit accumsan at. Duis interdum rutrum aliquam. Aenean facilisis tempor felis non mollis. Nunc ac neque a erat cursus eleifend. Quisque non pretium nibh. Nulla sagittis purus eget magna ultrices, quis suscipit diam ultrices. Nunc lectus nibh, lobortis sed enim sed, pretium facilisis sapien. Nunc elit massa, dignissim sed nisi ut, suscipit pretium metus. Donec pharetra, augue in varius pharetra, nibh nisl malesuada turpis, eget luctus orci mi eget nunc. Morbi diam nibh, luctus ac mauris ut, viverra scelerisque nisl. Morbi enim odio, tincidunt nec ipsum vitae, venenatis auctor nisi. Nulla vehicula sed magna vitae scelerisque. Quisque nec diam nunc. Sed volutpat efficitur fringilla. Suspendisse ultricies enim lorem, vitae luctus odio pulvinar non.
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <li class="list-group-item">
-            <table class="table table-hover table-responsive">
-                <thead>
-                    <th></th>
-                    <th>Autorizaciones</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Aps</th>
-                        {% if A %}
-                        <td>SI</td>
-                        {% else %}
-                        <td>NO</td>
-                        {% endif %}
-                    </tr>
-                    <tr>
-                        <th scope="row">Back Office</th>
-                        <td>{{Auth_BO}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Acta</th>
-                        <td>{{auth_Acta}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </li>
-    </ul>
+        <div class="col-sm-4">
+            <div class="card">
+                <div>
+                    <h5 class="mb-0">
+                        <button class="btn btn-block btn-danger collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Producto 1 bla bla bla
+                        </button>
+                    </h5>
+                </div>
+                    
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula lorem libero. Pellentesque lobortis, dolor ac tristique laoreet, diam tortor egestas orci, vel maximus velit nibh quis magna. Integer sed tempor leo. Praesent lorem enim, vulputate at ultricies eget, ornare nec magna. Curabitur cursus consequat ullamcorper. Phasellus posuere hendrerit magna, eu maximus leo semper sit amet. In id urna finibus, dictum turpis quis, fringilla nisi. Nunc lacinia, diam quis iaculis volutpat, justo mauris ultrices diam, id malesuada dolor nisl sit amet ante. Maecenas tristique pretium neque. Ut eu placerat dolor. Nullam ut luctus turpis, et consectetur felis. Vestibulum justo leo, eleifend id sollicitudin eu, varius ut diam. Sed id est lacus. Phasellus gravida libero ex, vitae luctus erat cursus et.
+    
+                        Donec condimentum auctor sapien, a interdum tellus semper ac. Duis posuere velit neque, vitae eleifend eros elementum ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas condimentum consequat posuere. Nunc auctor vel nibh eget egestas. Vivamus mollis venenatis mauris, ac accumsan libero luctus at. In in aliquet diam.
+                        
+                        Duis eget sagittis urna, ut bibendum sapien. In consequat vestibulum ex, a facilisis elit accumsan at. Duis interdum rutrum aliquam. Aenean facilisis tempor felis non mollis. Nunc ac neque a erat cursus eleifend. Quisque non pretium nibh. Nulla sagittis purus eget magna ultrices, quis suscipit diam ultrices. Nunc lectus nibh, lobortis sed enim sed, pretium facilisis sapien. Nunc elit massa, dignissim sed nisi ut, suscipit pretium metus. Donec pharetra, augue in varius pharetra, nibh nisl malesuada turpis, eget luctus orci mi eget nunc. Morbi diam nibh, luctus ac mauris ut, viverra scelerisque nisl. Morbi enim odio, tincidunt nec ipsum vitae, venenatis auctor nisi. Nulla vehicula sed magna vitae scelerisque. Quisque nec diam nunc. Sed volutpat efficitur fringilla. Suspendisse ultricies enim lorem, vitae luctus odio pulvinar non.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <div>
+                    <h5 class="mb-0">
+                        <button class="btn btn-block btn-danger collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Producto 1 bla bla bla
+                        </button>
+                    </h5>
+                </div>
+                    
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula lorem libero. Pellentesque lobortis, dolor ac tristique laoreet, diam tortor egestas orci, vel maximus velit nibh quis magna. Integer sed tempor leo. Praesent lorem enim, vulputate at ultricies eget, ornare nec magna. Curabitur cursus consequat ullamcorper. Phasellus posuere hendrerit magna, eu maximus leo semper sit amet. In id urna finibus, dictum turpis quis, fringilla nisi. Nunc lacinia, diam quis iaculis volutpat, justo mauris ultrices diam, id malesuada dolor nisl sit amet ante. Maecenas tristique pretium neque. Ut eu placerat dolor. Nullam ut luctus turpis, et consectetur felis. Vestibulum justo leo, eleifend id sollicitudin eu, varius ut diam. Sed id est lacus. Phasellus gravida libero ex, vitae luctus erat cursus et.
+    
+                        Donec condimentum auctor sapien, a interdum tellus semper ac. Duis posuere velit neque, vitae eleifend eros elementum ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas condimentum consequat posuere. Nunc auctor vel nibh eget egestas. Vivamus mollis venenatis mauris, ac accumsan libero luctus at. In in aliquet diam.
+                        
+                        Duis eget sagittis urna, ut bibendum sapien. In consequat vestibulum ex, a facilisis elit accumsan at. Duis interdum rutrum aliquam. Aenean facilisis tempor felis non mollis. Nunc ac neque a erat cursus eleifend. Quisque non pretium nibh. Nulla sagittis purus eget magna ultrices, quis suscipit diam ultrices. Nunc lectus nibh, lobortis sed enim sed, pretium facilisis sapien. Nunc elit massa, dignissim sed nisi ut, suscipit pretium metus. Donec pharetra, augue in varius pharetra, nibh nisl malesuada turpis, eget luctus orci mi eget nunc. Morbi diam nibh, luctus ac mauris ut, viverra scelerisque nisl. Morbi enim odio, tincidunt nec ipsum vitae, venenatis auctor nisi. Nulla vehicula sed magna vitae scelerisque. Quisque nec diam nunc. Sed volutpat efficitur fringilla. Suspendisse ultricies enim lorem, vitae luctus odio pulvinar non.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card">
+                <div>
+                    <h5 class="mb-0">
+                        <button class="btn btn-block btn-danger collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Producto 1 bla bla bla
+                        </button>
+                    </h5>
+                </div>
+                    
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula lorem libero. Pellentesque lobortis, dolor ac tristique laoreet, diam tortor egestas orci, vel maximus velit nibh quis magna. Integer sed tempor leo. Praesent lorem enim, vulputate at ultricies eget, ornare nec magna. Curabitur cursus consequat ullamcorper. Phasellus posuere hendrerit magna, eu maximus leo semper sit amet. In id urna finibus, dictum turpis quis, fringilla nisi. Nunc lacinia, diam quis iaculis volutpat, justo mauris ultrices diam, id malesuada dolor nisl sit amet ante. Maecenas tristique pretium neque. Ut eu placerat dolor. Nullam ut luctus turpis, et consectetur felis. Vestibulum justo leo, eleifend id sollicitudin eu, varius ut diam. Sed id est lacus. Phasellus gravida libero ex, vitae luctus erat cursus et.
+    
+                        Donec condimentum auctor sapien, a interdum tellus semper ac. Duis posuere velit neque, vitae eleifend eros elementum ac. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas condimentum consequat posuere. Nunc auctor vel nibh eget egestas. Vivamus mollis venenatis mauris, ac accumsan libero luctus at. In in aliquet diam.
+                        
+                        Duis eget sagittis urna, ut bibendum sapien. In consequat vestibulum ex, a facilisis elit accumsan at. Duis interdum rutrum aliquam. Aenean facilisis tempor felis non mollis. Nunc ac neque a erat cursus eleifend. Quisque non pretium nibh. Nulla sagittis purus eget magna ultrices, quis suscipit diam ultrices. Nunc lectus nibh, lobortis sed enim sed, pretium facilisis sapien. Nunc elit massa, dignissim sed nisi ut, suscipit pretium metus. Donec pharetra, augue in varius pharetra, nibh nisl malesuada turpis, eget luctus orci mi eget nunc. Morbi diam nibh, luctus ac mauris ut, viverra scelerisque nisl. Morbi enim odio, tincidunt nec ipsum vitae, venenatis auctor nisi. Nulla vehicula sed magna vitae scelerisque. Quisque nec diam nunc. Sed volutpat efficitur fringilla. Suspendisse ultricies enim lorem, vitae luctus odio pulvinar non.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</form>
-
+    
 {% endblock %}

@@ -48,7 +48,7 @@
       paginate: true,
       sort: true,
       pushState: true,
-      search: true,
+      search: false,
       recordCount: true,
       perPageSelect: true
     },

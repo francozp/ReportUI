@@ -14133,15 +14133,15 @@ pre {
 
 /* Footer */
 .footer {
-  background: #f3f5f7;
-  margin-left: 240px;
+  background: #ED0722;
+  margin-left: 0px;
   padding: 20px 1rem;
   transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
   -webkit-transition: all 0.25s ease;
   -ms-transition: all 0.25s ease;
-  width: calc(100% - 240px);
-  border-top: 1px solid #f2f2f2;
+  width: calc(100%);
+  border-top: 1px solid #ED0722;
   font-size: calc(0.875rem - 0.05rem); }
   .footer a {
     color: #33c92e;

@@ -8,6 +8,8 @@ from django.views.generic import TemplateView, DetailView, ListView, FormView,Cr
 import datetime
 from .models import *
 from .forms import *
+import urllib.request
+import json
 import csv
 
 def build_query(table, columns, data, model):
@@ -67,7 +69,6 @@ class CuentasView(FormView):
     form_class = QueryForm
     def get_context_data(self, **kwargs):
         context = super(CuentasView, self).get_context_data(**kwargs)
-        print(self.request.method)
         if self.request.method == 'POST':
             form = QueryForm(self.request.POST)
         else:
@@ -84,7 +85,6 @@ class CuentasView(FormView):
             data = self.request.POST
             data = dict(data) # De querydict a diccionario python
             columns = ["account_name", "application_name", "application_type", "host_name", "account_type"]
-            print(data)
             if(data["form"][0] != "filtrar"):
                 if(data["form"][0] != "exportar"):
                     if(data["form"][0] == "Privates"):
@@ -111,7 +111,6 @@ class CuentasView(FormView):
 
     def form_valid(self, form):
         context = self.get_context_data()
-        print(context)
         return super(CuentasView, self).form_valid(form)
 
 class UsuariosView(FormView):
@@ -119,7 +118,6 @@ class UsuariosView(FormView):
     form_class = QueryForm
     def get_context_data(self, **kwargs):
         context = super(UsuariosView, self).get_context_data(**kwargs)
-        print(self.request.method)
         if self.request.method == 'POST':
             form = QueryForm(self.request.POST)
         else:
@@ -159,7 +157,6 @@ class AplicacionesView(FormView):
     form_class = QueryForm
     def get_context_data(self, **kwargs):
         context = super(AplicacionesView, self).get_context_data(**kwargs)
-        print(self.request.method)
         if self.request.method == 'POST':
             form = QueryForm(self.request.POST)
         else:
@@ -194,7 +191,6 @@ class ServidoresView(FormView):
     form_class = QueryForm
     def get_context_data(self, **kwargs):
         context = super(ServidoresView, self).get_context_data(**kwargs)
-        print(self.request.method)
         if self.request.method == 'POST':
             form = QueryForm(self.request.POST)
         else:
@@ -229,7 +225,6 @@ class AliasesView(FormView):
     form_class = QueryForm
     def get_context_data(self, **kwargs):
         context = super(AliasesView, self).get_context_data(**kwargs)
-        print(self.request.method)
         if self.request.method == 'POST':
             form = QueryForm(self.request.POST)
         else:
@@ -264,7 +259,6 @@ class MappingsView(FormView):
     form_class = QueryForm
     def get_context_data(self, **kwargs):
         context = super(MappingsView, self).get_context_data(**kwargs)
-        print(self.request.method)
         if self.request.method == 'POST':
             form = QueryForm(self.request.POST)
         else:
@@ -299,7 +293,6 @@ class TgView(FormView):
     form_class = QueryForm
     def get_context_data(self, **kwargs):
         context = super(TgView, self).get_context_data(**kwargs)
-        print(self.request.method)
         if self.request.method == 'POST':
             form = QueryForm(self.request.POST)
         else:
@@ -334,7 +327,6 @@ class UgView(FormView):
     form_class = QueryForm
     def get_context_data(self, **kwargs):
         context = super(UgView, self).get_context_data(**kwargs)
-        print(self.request.method)
         if self.request.method == 'POST':
             form = QueryForm(self.request.POST)
         else:
@@ -359,6 +351,35 @@ class UgView(FormView):
                 context["data"],context["consulta"] = build_query("user_groups", columns, data, UserGroups)
                 context["filtered"] = True
             return super(UgView, self).render_to_response(context)
+
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+
+class ReportsView(FormView):
+    template_name = "reports.html"
+    form_class = QueryForm
+    def get_context_data(self, **kwargs):
+        context = super(ReportsView, self).get_context_data(**kwargs)
+        return context
+
+    def render_to_response(self, context):
+        return super(ReportsView, self).render_to_response(context)
+
+    def post(self, request, *args, **kwargs):
+            context = self.get_context_data()
+            data = self.request.POST
+            data = dict(data) # De querydict a diccionario python
+            url = "http://10.235.4.53:5000/add_instruction"
+            req = urllib.request.Request(url)
+            req.add_header('Content-Type', 'application/json; charset=utf-8')
+            json_body = "{}"
+            #if(data["form"][0] != "filtrar"):
+            jsondata = json.dumps(json_body)
+            jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
+            req.add_header('Content-Length', len(jsondataasbytes))
+            response = urllib.request.urlopen(req, jsondataasbytes)
+            return super(ReportsView, self).render_to_response(context)
 
 
     def form_valid(self, form):

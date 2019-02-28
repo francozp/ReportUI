@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}TESTING{% endblock %}
+{% block jsincludes %}
+    <link rel="stylesheet" href="{% static "css/jquery.dynatable.css" %}">
+    <link rel="stylesheet" href="{% static "css/tableexport.css" %}">
+    <script src="{% static "js/export.js" %}"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="{% static "js/jquery.dynatable.js" %}"></script>
+    <script> $(function() {$('#tabla-stock').dynatable();} );</script>
+{% endblock %}
+
+{% block content %}
+<h1>Generar Reporte</h1>
+<div class="dropdown">
+    <button class="btn btn-light xls dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Reportes
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <form method="post">{% csrf_token %}
+            <button class="dropdown-item" type="submit">Cuentas Privilegiadas<input type="hidden" name="form" value="Privates"></button>
+        </form>  
+        <form method="post">{% csrf_token %}
+            <button class="dropdown-item" type="submit">Cuentas Windows<input type="hidden" name="form" value="win"></button>
+        </form>  
+        <form method="post">{% csrf_token %}
+            <button class="dropdown-item" type="submit">Cuentas No Windows<input type="hidden" name="form" value="nowin"></button>
+        </form>  
+    </div>
+{% endblock %}
+{% block content1 %}{% endblock %}
+{% block content2 %}{% endblock %}
